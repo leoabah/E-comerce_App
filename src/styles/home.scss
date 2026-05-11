@@ -1,0 +1,16 @@
+.home{
+    padding: 2rem;
+    background-color:#4A5A9E;
+    color:#FAE7D3 ;
+    h1[class="home-title"]{
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.products-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+
+}

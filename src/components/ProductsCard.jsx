@@ -6,10 +6,15 @@ export default  function ProductsCard({products}){
         <div className ="product-card">
             <img src={products.image} alt={products.name} />
             <h3>{products.name}</h3>
-            <p>{products.price}</p>
+            <p> ${products.price}</p>
             <Link to={`/products/${products.id}`}>
                 Ver detalles
             </Link>
+            <button className="btn-card">
+                <Link to="/carrito"  className="pay-card">
+                  Comprar
+                </Link>
+            </button>
         </div>
     );
 }
