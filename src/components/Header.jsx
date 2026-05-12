@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaSearch, FaShoppingCart, FaUserCircle } from 'react-icons/fa'
-
+import { useContext } from "react"
+import { CartContext } from  "@/context/CartContext"
 import logoHeader from "@/assets/logo.png"
 
-const Header = () => {
+export default function Header() {
+
+  const  { totalItems } = useContext(CartContext);
   
   const user = null; 
   return (
@@ -21,12 +24,19 @@ const Header = () => {
                  <Link to="/contacto" className='link-nav' >Contacto</Link>
                  <Link to="/nosotros" className='link-nav' >Nosotros</Link>
             </div>
+            
             <div className='search'>
               <input className='inpHead'  type='text' placeholder='buscar producto...'/>
               <button className='searchBtn'><FaSearch/></button>
             </div>
-              <button className='cartWrapper'><FaShoppingCart style={{width:30, height:30 }}/></button>
-              
+              <Link to="/cart" className='cartWrapper'><FaShoppingCart style={{width:30, height:30 }}/>
+              {totalItems > 0 &&(
+                <span className="cart-badge">
+                {totalItems}
+                </span>
+              )}
+              </Link>
+
               {user ? (
                 <div className='auth-links'>
                   <Link to="/perfil" className='perfil-btn' style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -50,4 +60,3 @@ const Header = () => {
   )
 }
 
-export default Header
