@@ -15,7 +15,7 @@ export default function Header() {
         <nav className='nav-bar'>
             <div className='logo'>
                 <img className='logo-img' src={logoHeader} alt="logo del comercio"/>
-                <h3 className='logo-title'>Libreria<br/>Cosmica</h3>
+                <h3 className='logo-title' >Libreria<br/>Cosmica</h3>
             </div>
             <br/>
             <div className='div-links'>

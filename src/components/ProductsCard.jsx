@@ -2,12 +2,24 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 
 import { CartContext } from "../context/CartContext";
+import { FaMinus, FaPlus } from "react-icons/fa";
 
-export default  function ProductsCard({products}){
+export default  function ProductsCard({
+    products
+})  {
      
-    const {addToCart} = useContext(CartContext); 
+    const {
+           cart,
+           addToCart,
+           increaseQuantity,
+           decreaseQuantity
+        } = useContext(CartContext); 
 
-    return(
+        const cartItem = cart.find(
+            item => item.id === products.id
+        );
+
+    return (
         <div className ="product-card">
 
             <img 
@@ -19,12 +31,47 @@ export default  function ProductsCard({products}){
 
             <p> ${products.price} ars</p>
 
+            {!cartItem ? (
+
             <button 
               className="btn-card"
-              onClick={()=>addToCart(products)}
+              onClick={()=>
+                addToCart(products)
+
+              }
             >
                Comprar
             </button>
+            ) : (
+
+                < div className="quantity-controls">
+
+                 <button 
+                    className="btn-count"
+                    onClick={() =>
+                        decreaseQuantity(products.id)
+                    }
+                >
+               <FaMinus/>
+             </button> 
+
+            <span>
+                {cartItem.quantity}
+            </span>  
+
+             <button 
+                     className="btn-count"
+                     onClick={()=>
+                        increaseQuantity(products.id)
+                }
+             >
+               <FaPlus/>
+             </button>
+
+        </div>
+
+      )}  
+            
             <Link to={`/products/${products.id}`}>
                 Ver detalles
             </Link>
