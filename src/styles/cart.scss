@@ -1,12 +1,26 @@
 
-body{
-   
+.main-cartshop{
+   background-color: #7185da;
 }
-.cart-tems {
+.cart-item {
     border: 1px solid #ddd;
-    padding: 1rem;
+    padding: 0.5rem;
     margin-bottom: 1rem;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    justify-content: space-between;
+
+      &:hover{
+        background-color: white;
+        cursor: pointer;
+      }
+}
+.cart-detail{
+    text-decoration: none;
+    color:#f6f4f2 ;
+    font-style:oblique;
 }
 
 .quantity-controls{
@@ -18,11 +32,22 @@ body{
 }
 
 .btn-count{
+    background-color: burlywood;
     width: 35px;
     height:35px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    color:#f6f4f2;
+}
+.btncart{
+    width: 5rem;
+    padding: 0.5rem;
+    border-top-right-radius:8px ;
+    border-bottom-left-radius:8px ;
+    font-weight: 600;
+    color:#f6f4f2;
+    background-color:#1b1e3d ;
 }
 
 span {

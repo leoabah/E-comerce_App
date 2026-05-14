@@ -66,7 +66,7 @@ export function CartProvider({children}){
         setCart(updatedCart)
     }
 
-    const removerFromCart = (id) =>{
+    const removeFromCart = (id) =>{
         setCart(
             cart.filter(item => item.id !== id)
         );
@@ -88,7 +88,7 @@ export function CartProvider({children}){
             addToCart,
             increaseQuantity,
             decreaseQuantity,
-            removerFromCart,
+            removeFromCart,
             clearCart,
             totalPrice,
             totalItems,

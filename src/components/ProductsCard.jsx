@@ -72,7 +72,9 @@ export default  function ProductsCard({
 
       )}  
             
-            <Link to={`/products/${products.id}`}>
+            <Link to={`/products/${products.id}`} 
+            className="cart-detail"
+            >
                 Ver detalles
             </Link>
         </div>

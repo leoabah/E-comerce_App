@@ -3,7 +3,7 @@
 const products = [
     {
         id: 1,
-        name: "Drangon_Ball_Z ",
+        name: "Dragon_Ball_Z ",
         price: 18500.00,
         image: "/Dragon_ball.png",
         description: "a compaña a goku y compania en nuevas aventuras protegiendo la Tierra contra nuevas amenazas"
