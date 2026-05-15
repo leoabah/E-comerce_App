@@ -1,8 +1,17 @@
 import React from 'react'
+import "@/styles/footer.scss"
 
 const Footer = () => {
   return (
-    <div>© 2026 Ecommerce</div>
+    <div style={{"textAlign":"center"}} 
+    className='footer-container'
+    >
+      ©2025  By   
+      <a href="">
+        <space/>
+        <em> Marchlibre</em>
+      </a>
+      </div>
   )
 }
 
