@@ -8,6 +8,7 @@
     width:100%;
     height: 700px;
     margin: 0 ;
+    
 
      & .carrusel-slide{
         width: 100%;
@@ -18,7 +19,7 @@
      & img{
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        
         display: none;
         &.active{
             display:block
@@ -42,3 +43,13 @@ button{
  }
 }
 
+@media (max-width: 1024px) {
+   .carrusel-container {
+      height: 350px;
+   }
+}
+@media (max-width: 768px) {
+   .carrusel-container{
+      height: 250px;
+   }
+}
