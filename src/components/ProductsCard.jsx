@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react"
-
+import { toast } from "react-hot-toast"
 import { CartContext } from "../context/CartContext";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
@@ -35,10 +35,12 @@ export default  function ProductsCard({
 
             <button 
               className="btn-card"
-              onClick={()=>
-                addToCart(products)
-
-              }
+              onClick={()=>{
+                addToCart(products);
+                toast.success(
+                    "Producto agregado"
+                );
+              }}
             >
                Comprar
             </button>

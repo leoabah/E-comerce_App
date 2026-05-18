@@ -11,7 +11,7 @@ export const validations = {
     price:{
         require: true,
         pattern: 
-        /^[0-9]+$/,
+        /^[1-9][0-9]*$/,
         mensaje: 
         "solo numero positivos"
     },

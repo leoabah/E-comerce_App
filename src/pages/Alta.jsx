@@ -1,72 +1,33 @@
-import React, { useState } from 'react'
+
 import { validations } from '../utils/formValidations';
 import imgALtas from "@/assets/imgALtas.png";
 import "@/styles/alta.scss"
+import  useForm  from '../hooks/useForm';
+import { data } from 'react-router-dom';
+
 export const Alta = () => {
 
-  const [form,setform]= useState(
+  const initiaForm =
     {
       name:"",
       price:"",
       age:"",
-      shrotDescription:"",
+      category:"",
+      shortDescription:"",
       longDescription:"",
       stock:""
-    }
-  );
-  const [errors ,setErrors]= useState({});
-  const handelChange =(e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value
-    });
-  }
-    const validate = ()=> {
-
-      let newErrors  = {};
-
-      Object.keys(validations)
-      .forEach(field =>{
-
-        const rule = 
-        validations[field];
-
-        const value =
-        form[field];
-
-        if (
-          rule.required && 
-          !value.trim()
-        ){
-          newErrors[field]=
-          "Campo obligatorio";
-
-          return;
-      
-        }
-        if (
-          !rule.pattern.test(value)
-        ){
-          newErrors[field]= rule.message;
-        }
-      });
-      setErrors(newErrors);
-
-      return Object.keys(newErrors)
-       .length === 0;
     };
-
-    const handleSubmit = (e) =>{
-
-      e.preventDefault();
-
-      if(validate()){
-        console.log("formulario valido");
-      } else{
-        console.log("Errores");
-      }
-    };
+    const {
+      form,
+      errors,
+      handleSubmit,
+      handleChange,
+      handleBlur
+    } =
+    useForm(initiaForm, validations);
+  const  sendForm = (data)=>{
+    console.log(data)
+  };
   
   return (
      <div className='alta-contain'>
@@ -77,7 +38,7 @@ export const Alta = () => {
            alt='banner de formulario'
            />
        </div>
-       <div alta-form-container>
+       <div className='alta-form-container'>
         <h1 style={{"marginBottom":25}}
         className='alta-form-title'
         >
@@ -85,7 +46,7 @@ export const Alta = () => {
         </h1>
         <form
             className="alta-form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(sendForm)}
 >
           <div className='form-group'>
             <label>
@@ -93,21 +54,40 @@ export const Alta = () => {
             </label>
             <input 
              type='text'
+             name='name'
              placeholder='Nombre del prodcuto'
              value={form.name}
-             onChange={handelChange}
+             onChange={handleChange}
+             onBlur={handleBlur}
             />
+            {
+              errors.name &&(
+                <p className='error'>
+                  {errors.name}
+                </p>
+              )
+            }
           </div>
+
           <div className='form-group'>
             <label>
               Precio:
             </label>
             <input 
             type="number"
+            name='price'
             placeholder="Solo numero"
             value={form.price}
-             onChange={handelChange}
+             onChange={handleChange}
+             onBlur={handleBlur}
             />
+            {
+              errors.price &&(
+                <p className='error'>
+                  {errors.price}
+                </p>
+              )
+            }
           </div>
           
           <div className='form-group'>
@@ -116,32 +96,60 @@ export const Alta = () => {
             </label>
             <input 
             type="number"
+            name='age'
             placeholder="Edad recomendada"
             value={form.age}
-             onChange={handelChange}
+             onChange={handleChange}
+             onBlur={handleBlur}
             />
+            {
+              errors.age &&(
+                <p className='error'>
+                  {errors.age}
+                </p>
+              )
+            }
           </div>
+
           <div className='form-group'>
             <label>
               Descripcion cortas:
             </label>
             <textarea
-            type="number"
+           
+            name='shortDescription'
             placeholder="Descripcion corta.."
-            value={form.shrotDescription}
-             onChange={handelChange}
+            value={form.shortDescription}
+             onChange={handleChange}
+             onBlur={handleBlur}
             />
+            {
+              errors.shortDescription && (
+                <p className='error'>
+                  {errors.shortDescription}
+                </p>
+              )
+            }
           </div>
           <div className='form-group'>
             <label>
               Descripcion larga:
             </label>
             <textarea 
-            type="number"
+           
+            name='longDescription'
             placeholder="Descripcion larga.."
             value={form.longDescription}
-             onChange={handelChange}
+             onChange={handleChange}
+             onBlur={handleBlur}
             />
+            {
+              errors.longDescription && (
+                <p className='error'>
+                  {errors.longDescription}
+                </p>
+              )
+            }
           </div>
           <div className='form-group'>
             <label>
@@ -152,7 +160,8 @@ export const Alta = () => {
             name='stock'
             placeholder="Stock disponible"
             value={form.stock}
-            onChange={handelChange}
+            onChange={handleChange}
+            onBlur={handleBlur}
             />
             { 
               errors.stock && (
