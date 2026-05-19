@@ -1,10 +1,12 @@
 import products from "@/data/products";
 import ProductsCard from "@/components/ProductsCard";
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Carrusel from "@/components/Carrusel";
+import productsApi from "../api/productsApi";
 import "@/styles/product-card.scss"
 import "@/styles/home.scss"
 import "@/styles/Carrusel.scss"
+
 import banner1 from "@/assets/Banner1.png"
 import banner2 from "@/assets/Banner2.png"
 import banner3 from "@/assets/Banner3.png"
@@ -12,6 +14,41 @@ import banner3 from "@/assets/Banner3.png"
 
 export default function home() {
      const images =[banner1,banner2,banner3];
+     const [products ,setProducts]= useState([]);
+     const [loading , setLoading]= useState (true);
+     const [error , setError]= useState(false);
+     
+     useEffect(() =>{
+      const getProducts = async() =>{
+         try{
+            const response =
+            await productsApi.get("/products");
+
+            setProducts(response.data);
+
+         } catch(error)
+         {console.log(error);
+             setError(true);
+         }finally {
+            setLoading(false);
+         }
+      };
+      getProducts();
+     }, []);
+     
+     if (loading) {
+      return (
+      <h2>Cargando...</h2>
+   );
+     }
+     
+     if (error) {
+      return(
+         <h2>
+            Error al cargar  productos
+         </h2>
+      );
+     }
 
     return(
        <div>
@@ -24,12 +61,14 @@ export default function home() {
           <br />
           <br />
           <div className = "products-grid">
-            {products.map(product =>(
+            {
+            products.map(product =>(
                   <ProductsCard
                      key={product.id}
                      products={product}
                      />
-            ) )}            
+            ) )
+            }            
           </div>
        </main>
       </div>

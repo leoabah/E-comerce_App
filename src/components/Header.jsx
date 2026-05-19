@@ -11,6 +11,7 @@ export default function Header() {
   const  { totalItems } = useContext(CartContext);
   const [menuOpen, setMenuOpen]= 
   useState(false);
+  const [openCart , setOpenCart]= useState(false);
   
   const user = null; 
   return (
@@ -49,8 +50,12 @@ export default function Header() {
           </div>
 
             <div className='cartWrapper'>
-              <Link to="/cart"
+              <button 
               className='cart-link'
+              style={{"background":"transparent"}}
+              onClick={() =>
+                setOpenCart(!openCart)
+              }
               > 
 
               <FaShoppingCart 
@@ -66,7 +71,7 @@ export default function Header() {
                 </span>
               )}
               
-              </Link>
+              </button>
               <MiniCart/>
             </div>
 
