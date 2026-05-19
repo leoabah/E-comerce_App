@@ -72,7 +72,14 @@ export default function Header() {
               )}
               
               </button>
-              <MiniCart/>
+              {
+                openCart && (
+
+              <MiniCart
+                setOpenCart={setOpenCart}
+              />
+                )
+              }
             </div>
 
               {user ? (
