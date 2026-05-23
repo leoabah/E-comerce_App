@@ -4,7 +4,7 @@ import { FaSearch, FaShoppingCart, FaUserCircle , FaBars, FaTimes} from 'react-i
 import { useContext } from "react"
 import { CartContext } from  "@/context/CartContext"
 import logoHeader from "@/assets/logo.png"
-import MiniCart from './MiniCart'
+import MiniCart from '@/components/MiniCart.jsx'
 
 export default function Header() {
 

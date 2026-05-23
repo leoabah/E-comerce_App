@@ -13,9 +13,7 @@ dist-ssr
 *.local
 #variables de entorno secretas
 .env
-.env.*.local
-.env.production
-.env.development
+
 
 # Editor directories and files
 .vscode/*
