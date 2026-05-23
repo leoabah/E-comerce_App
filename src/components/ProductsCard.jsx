@@ -23,7 +23,7 @@ export default  function ProductsCard({
         <div className ="product-card">
 
             <img 
-            src={products.image} 
+            src={`${import.meta.env.BASE_URL}${products.image.replace(/^\.\//, '')}`} 
             alt={products.name} 
             />
 
