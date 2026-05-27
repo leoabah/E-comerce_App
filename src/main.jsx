@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/E-comerce_App">
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
      <CartProvider>
        < App />
        <Toaster
