@@ -21,10 +21,13 @@ export default function home() {
      useEffect(() =>{
       const getProducts = async() =>{
          try{
-            const response =
-            await productsApi.get("/products");
-
-            setProducts(response.data);
+            const response = await productsApi.get("/products");
+            // Ajustar rutas de imagen devueltas por la API para respetar BASE_URL
+            const mapped = response.data.map(p => ({
+               ...p,
+               image: import.meta.env.BASE_URL + String(p.image).replace(/^\//, "")
+            }));
+            setProducts(mapped);
 
          } catch(error)
          {console.log(error);
