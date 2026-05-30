@@ -4,12 +4,17 @@ import AboutUs from '../pages/AboutUs'
 import { Alta } from '../pages/Alta'
 import Contact from '../pages/Contact'
 import Cart from '../pages/Cart'
+import EditProduct from "@/pages/EditProduct"
+import ProductDetail from "@/components/ProductDetail"
 
 
 const AppRouter = () => {
   return (
     <Routes>
+
       <Route path="/" element={<Home />} />
+      <Route path="/products/:id" element={<ProductDetail />} />
+      <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/alta" element={<Alta />} />
       <Route path="/contact" element={<Contact />} />

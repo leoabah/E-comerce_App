@@ -4,8 +4,11 @@ import { toast } from "react-hot-toast"
 import { CartContext } from "../context/CartContext";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
+
+
 export default  function ProductsCard({
-    products
+    products,
+    deleteProduct
 })  {
      
     const {
@@ -19,11 +22,15 @@ export default  function ProductsCard({
             item => item.id === products.id
         );
 
+        const isAdmin = false;
+
     return (
         <div className ="product-card">
 
             <img 
-            src={products.image} 
+            src={
+                products.image
+            }
             alt={products.name} 
             />
 
@@ -74,11 +81,36 @@ export default  function ProductsCard({
 
       )}  
             
-            <Link to={`/products/${products.id}`} 
+            <Link 
+            to={`/products/${products.id}`} 
             className="cart-detail"
             >
                 Ver detalles
+            </Link> 
+
+            {isAdmin && (
+                <>
+
+                <button 
+                className="btn-delete"
+                onClick={()=>
+                    deleteProduct(products.id)
+                }
+                >
+                   Eliminar 
+                </button>
+
+                <Link
+                to={`/edit/${products.id}`}
+                className="btn-edit"
+                >
+                    Editar
             </Link>
+            
+            </>
+
+         )}
+         
         </div>
     );
 }

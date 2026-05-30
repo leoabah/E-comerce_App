@@ -31,7 +31,7 @@ const products = [
     },
     {
         id: 5,
-        name: "Jujustu_Kaisen ",
+        name: "Jujutsu_Kaisen ",
         price: 20000.00,
         image: import.meta.env.BASE_URL + "Jujutsu_Kaisen.png",
         description: "sumate al coloegio de Hechiceria para conocer a jugi Itadori nuestro prota y junta a nobara, megumi, maki, inumaki, panda y el profe gojo y compania"
@@ -61,7 +61,7 @@ const products = [
         id: 9,
         name: "Hunter_x_Hunters ",
         price: 12900.00,
-        image: import.meta.env.BASE_URL + "Hunters_x_Hunters.png",
+        image: import.meta.env.BASE_URL + "hunters_x_hunters.png",
         description: "acompaña a Gon Freecss y kilua Zoldic en sus aventuras para convertirse en cazadores y encontrar a Ging Freecss."
     },
     {
