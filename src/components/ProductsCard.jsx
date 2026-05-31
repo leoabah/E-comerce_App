@@ -29,7 +29,8 @@ export default  function ProductsCard({
 
             <img 
             src={
-                products.image
+                import.meta.env.BASE_URL +
+                products.image[0].replace("/", "")
             }
             alt={products.name} 
             />
