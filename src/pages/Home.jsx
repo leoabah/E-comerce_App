@@ -40,19 +40,7 @@ export default function Home() {
 
 }, []);
      
-   //   if (loading) {
-   //    return (
-   //    <h2>Cargando...</h2>
-   // );
-   //   }
-     
-   //   if (error) {
-   //    return(
-   //       <h2>
-   //          Error al cargar  productos
-   //       </h2>
-   //    );
-   //   }
+   
      const deleteProduct = async(id) =>{
 
       try{

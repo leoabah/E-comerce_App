@@ -23,8 +23,9 @@ export default function ProductDetail(){
                 `/products/${id}`
 
                );
-
+               console.log(response.data);
                setProduct(response.data);
+               
                setMainImage(response.data.image[0]);
 
         } catch(error) {
@@ -39,6 +40,9 @@ if (!product){
     return<h2>Cargando Producto...</h2>
 }
 
+const images = Array.isArray(product.image)
+  ? product.image
+  : [product.image];
 
 
     return(
