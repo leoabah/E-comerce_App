@@ -23,9 +23,9 @@ export default  function ProductsCard({
         );
 
         const isAdmin = false;
-        console.log(products.name);
-        console.log(products.image);
-        console.log(Array.isArray(products.image));  
+        // console.log(products.name);
+        // console.log(products.image);
+        // console.log(Array.isArray(products.image));  
 
     return (
         <div className ="product-card">

@@ -2,10 +2,10 @@ import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/Home'
 import AboutUs from '../pages/AboutUs'
 import { Alta } from '../pages/Alta'
-import Contact from '../pages/Contact'
 import Cart from '../pages/Cart'
 import EditProduct from "@/pages/EditProduct"
-import ProductDetail from "@/components/ProductDetail"
+import ProductDetail from "@/pages/ProductDetail"
+import Contact from '../pages/Contact'
 
 
 const AppRouter = () => {
@@ -19,6 +19,7 @@ const AppRouter = () => {
       <Route path="/alta" element={<Alta />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/cart" element={<Cart/>} />
+
     </Routes>
   )
 }

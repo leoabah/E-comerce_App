@@ -5,8 +5,9 @@
 @use "./Carrusel.scss";
 @use "./footer.scss";
 @use "./alta.scss";
-@use "/src/styles/product-detail";
-
+@use "./product-detail";
+@use "./contact";
+@use "./aboutus";
 
 * {
   margin: 0;

@@ -26,7 +26,14 @@ export default function MiniCart({setOpenCart}) {
                       className="mini-cart-item"
                       >
                         <img 
-                        src={item.image}
+                        src={
+                            Array.isArray(item.image)
+                            ? import.meta.env.BASE_URL +
+                            item.image[0].replace("/","")
+                            : import.meta.env.BASE_URL +
+                            item.image.replace("/","")
+                        
+                        }
                         alt={item.name}
                 />
 

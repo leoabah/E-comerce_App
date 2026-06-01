@@ -40,8 +40,8 @@ export default function Header() {
               >
                  <Link to="/" className='link-nav' >Home</Link>
                  <Link to="/alta" className='link-nav' >Alta</Link>
-                 <Link to="/contacto" className='link-nav' >Contacto</Link>
-                 <Link to="/nosotros" className='link-nav' >Nosotros</Link>
+                 <Link to="/contact" className='link-nav' >Contacto</Link>
+                 <Link to="/about" className='link-nav' >Nosotros</Link>
             
             <div className='search'>
               <input className='inpHead'  type='text' placeholder='buscar producto...'/>
