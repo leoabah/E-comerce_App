@@ -39,7 +39,9 @@ const AboutUs = () => {
     <div
     className='gallery-section'
     >
-      <h2>Nuestro Local</h2>
+      <h2>
+        Nuestro Local 
+      </h2>
 
       <p>
         Te invitamos a visitar nuestra espacio , donde encontraras
