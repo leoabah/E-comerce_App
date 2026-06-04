@@ -17,11 +17,7 @@
     "@voaii/proxima-nova": "^4.5.2",
     "axios": "^1.16.0",
     "bootstrap": "^5.3.8",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "espress": "^0.0.0",
-    "mongoose": "^9.6.1",
-    "nodemon": "^3.1.14",
+    
     "react": "^19.2.5",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.5",
@@ -47,5 +43,12 @@
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoabah/E-comerce_App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leoabah/E-comerce_App/issues"
+  }
 }
