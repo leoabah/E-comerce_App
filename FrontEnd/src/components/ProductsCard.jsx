@@ -19,29 +19,44 @@ export default  function ProductsCard({
         } = useContext(CartContext); 
 
         const cartItem = cart.find(
-            item => item.id === products.id
+            item => item.id === products._id
+           
         );
 
         const isAdmin = false;
-        // console.log(products.name);
-        // console.log(products.image);
-        // console.log(Array.isArray(products.image));  
+         
 
+        const imageUrl = Array.isArray(products.image)
+           ? products.image[0]
+           : products.image;
+
+           console.log("BASE_URL:", import.meta.env.BASE_URL);
+           console.log("IMAGE:",imageUrl)
+
+           const finalImage =
+           imageUrl
+           ? import.meta.env.BASE_URL
+           + imageUrl.replace("/", "")
+           : import.meta.env.BASE_URL 
+           + "placeholder.jpg"
+
+           console.log("FINAL:", finalImage);
     return (
+
         <div className ="product-card">
 
             <img 
             src={
-                Array.isArray(products.image)
-                ? import.meta.env.BASE_URL +
-                products.image[0].replace("/", "")
-                : import.meta.env.BASE_URL +
-                products.image.replace("/","")
-            }
-            alt={products.name} 
+            imageUrl
+            ? import.meta.env.BASE_URL
+             + imageUrl.replace("/","")
+            : import.meta.env.BASE_URL
+             + "placerholder.jpg"  
+        }
+            alt={products.title} 
             />
 
-            <h3>{products.name}</h3>
+            <h3>{products.title}</h3>
 
             <p> ${products.price} ars</p>
 
@@ -65,7 +80,7 @@ export default  function ProductsCard({
                  <button 
                     className="btn-count"
                     onClick={() =>
-                        decreaseQuantity(products.id)
+                        decreaseQuantity(products._id)
                     }
                 >
                <FaMinus/>
@@ -78,7 +93,7 @@ export default  function ProductsCard({
              <button 
                      className="btn-count"
                      onClick={()=>
-                        increaseQuantity(products.id)
+                        increaseQuantity(products._id)
                 }
              >
                <FaPlus/>
@@ -89,7 +104,7 @@ export default  function ProductsCard({
       )}  
             
             <Link 
-            to={`/products/${products.id}`} 
+            to={`/products/${products._id}`} 
             className="cart-detail"
             >
                 Ver detalles
@@ -101,14 +116,14 @@ export default  function ProductsCard({
                 <button 
                 className="btn-delete"
                 onClick={()=>
-                    deleteProduct(products.id)
+                    deleteProduct(products._id)
                 }
                 >
                    Eliminar 
                 </button>
 
                 <Link
-                to={`/edit/${products.id}`}
+                to={`/edit/${products._id}`}
                 className="btn-edit"
                 >
                     Editar

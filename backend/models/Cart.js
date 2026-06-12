@@ -1,3 +1,4 @@
+import { image } from "framer-motion/client";
 import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema(
@@ -6,6 +7,7 @@ const cartSchema = new mongoose.Schema(
         {
             productId: String,
             title: String,
+          //  image: String,
             price: Number,
             quantity: Number
         }

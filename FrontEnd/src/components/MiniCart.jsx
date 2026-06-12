@@ -22,7 +22,7 @@ export default function MiniCart({setOpenCart}) {
                 <>
                   {cart.map(item => (
                     <div
-                      key={item.id}
+                      key={item._id}
                       className="mini-cart-item"
                       >
                         <img 

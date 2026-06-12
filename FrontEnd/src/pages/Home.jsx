@@ -28,6 +28,10 @@ export default function Home() {
          const response =
          await productsApi.get("/products");
 
+         response.data.forEach(product => {
+            console.log(product)
+         });
+
          setProducts(response.data);
 
       } catch(error){
@@ -86,9 +90,9 @@ export default function Home() {
           
           <div className = "products-grid">
             {
-            products.map(product =>(
-                  <ProductsCard
-                     key={product.id}
+            products.map(product => (
+                  < ProductsCard
+                     key={product._id}
                      products={product}
                      deleteProduct={deleteProduct}
                      />
