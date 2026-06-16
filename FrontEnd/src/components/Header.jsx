@@ -94,8 +94,8 @@ export default function Header() {
                 </div>
               ) : (
                 <div className='auth-links'>
-                  <Link to="/iniciar" className='iniciar-btn'>Iniciar</Link>
-                  <Link to="/registrase" className='registrarse-btn'>
+                  <Link to="/login" className='iniciar-btn'>Iniciar</Link>
+                  <Link to="/register" className='registrarse-btn'>
                     Registrarse
                   </Link>
                 </div>

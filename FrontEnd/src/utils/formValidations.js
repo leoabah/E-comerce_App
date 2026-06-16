@@ -1,40 +1,57 @@
+import { pattern } from "framer-motion/client";
 
 
 export const validations = {
+    
     name:{
-        require: true,
+        required: true,
         pattern:
         /^[A-Za-zÀ-ÿ\s]{3,40}$/,
-        mensaje: 
+        message: 
         "el nombre debe tener entre 3 y 40 caracteres"
     },
     price:{
-        require: true,
+        required: true,
         pattern: 
         /^[1-9][0-9]*$/,
-        mensaje: 
+        message: 
         "solo numero positivos"
     },
     age: {
-        require: true,
+        required: true,
         pattern:
         /^[0-9]{1,2}$/,
-        mensaje:
+        message:
         "Edad invalida"
     },
     shortDescription:{
-        require: true ,
+        required: true ,
         pattern:
         /^.{10,100}$/,
-        mensaje:
+        mensage:
         "Minimo 10 caracteres"
     },
     longDescription:{
-        require:true,
+        required:true,
         pattern: 
         /^.{20,500}$/,
-        mensaje:
+        message:
         "Minimo 20 caracteres"
+    },
+    name:{
+        required:true,
+        pattern:/^[A-Za-zÀ-ÿ\s]{3,40}$/,
+        message: "El nombre debe tener entre 3 y 40 caracteres"
+    },
+    email:{
+        required:true,
+        pattern:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        message:"Email invalido"
+    },
+    password:{
+        required:true,
+        pattern:/^.{6,20}$/,
+        message: "La contrasena debe tener entre 6 y 20 caracteres"
     }
 
 };

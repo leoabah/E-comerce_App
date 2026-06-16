@@ -1,8 +1,8 @@
 import  axios from "axios";
 import dotenv from "dotenv";
 
-import { connectDB } from "./config/db.js";
-import Product from "./models/Product.js";
+import { connectDB } from "../config/db.js";
+import Product from "../models/Product.js";
 
 dotenv.config();
 
