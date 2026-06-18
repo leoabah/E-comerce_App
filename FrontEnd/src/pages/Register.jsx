@@ -159,12 +159,12 @@ const validationsForm = () => {
                     </span>
                 )}
 
-                <label>Contrasena</label>
+                <label>Contraseña</label>
 
                 <input
                  type= "password"
                  name = "password"
-                 placeholder =  "contrasena"
+                 placeholder =  "contraseña"
                  value={formData.password}
                  onChange={handleChange}
                  />
