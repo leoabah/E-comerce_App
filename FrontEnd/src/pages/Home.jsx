@@ -16,8 +16,6 @@ import banner3 from "@/assets/Banner3.png"
 export default function Home() {
      const images =[banner1,banner2,banner3];
      const [products ,setProducts]= useState([]);
-     //const [loading , setLoading]= useState (true);
-    //const [error , setError]= useState(false);
      
     useEffect(() => {
 

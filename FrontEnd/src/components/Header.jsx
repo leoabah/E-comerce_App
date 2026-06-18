@@ -5,15 +5,27 @@ import { useContext } from "react"
 import { CartContext } from  "@/context/CartContext"
 import logoHeader from "@/assets/logo.png"
 import MiniCart from '@/components/MiniCart.jsx'
+import { AuthContext } from '../context/AuthContext'
+
 
 export default function Header() {
 
   const  { totalItems } = useContext(CartContext);
+
   const [menuOpen, setMenuOpen]= 
   useState(false);
+  
   const [openCart , setOpenCart]= useState(false);
   
-  const user = null; 
+  const { user, logout } = useContext(AuthContext); 
+
+  const firstName = user?.name?.split(" ")[0];
+
+  const handleLogout = ()=> {
+    logout()
+      setMenuOpen(false);
+  };
+
   return (
     <header className='header'>
         <nav className='nav-bar'>
@@ -82,22 +94,54 @@ export default function Header() {
               }
             </div>
 
-              {user ? (
+              {
+              user ? (
                 <div className='auth-links'>
-                  <Link to="/perfil" className='perfil-btn' style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                  <Link 
+                    to="/perfil" 
+                    className='perfil-btn' 
+                   style={{display: 'flex',
+                          alignItems: 'center', 
+                          gap: '8px',
+                          width:'5rem'
+                        }}
+                    
+                    >
+
                     <FaUserCircle size={24} />
+
                     {firstName}
+
                   </Link>
-                  <button onClick={handleLogout} className='registrarse-btn'>
+
+                  <button 
+                     onClick={handleLogout} 
+                     className='registrarse-btn'
+                  >
                     Cerrar
                   </button>
+
                 </div>
+
               ) : (
+
                 <div className='auth-links'>
-                  <Link to="/login" className='iniciar-btn'>Iniciar</Link>
-                  <Link to="/register" className='registrarse-btn'>
-                    Registrarse
+
+                  <Link 
+                    to="/login" 
+                    className='iniciar-btn'
+                  >
+                      Iniciar
                   </Link>
+
+                  <Link 
+                     to="/register" 
+                     className='registrarse-btn'
+                  >
+                    Registrarse
+
+                  </Link>
+
                 </div>
               )}
         </nav>

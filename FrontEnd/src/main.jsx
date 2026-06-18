@@ -8,6 +8,7 @@ import "./styles/main.scss"
 import { CartProvider } from './context/CartContext.jsx'
 import { ToastContainer } from "react-toastify"
 import  "react-toastify/dist/ReactToastify.css"
+import { AuthProvider } from "./context/AuthContext.jsx"
 
 
 
@@ -18,7 +19,9 @@ createRoot(document.getElementById('root')).render(
         import.meta.env.BASE_URL
         }>
      <CartProvider>
+      <AuthProvider>
        < App />
+      </AuthProvider>
        <ToastContainer
        position="top-right"
        autoClose={2500} 

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast"
 import { validations } from "../utils/formValidations";
 import authApi from "../api/authApi";
+import "../styles/register.scss";
 
 export default function Register(){
 
@@ -11,48 +13,72 @@ export default function Register(){
         password:""
     });
 
-    const handleChange = (e) =>{
+    const  [errors, setErrors] = useState({});
 
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
+    const  validationsField = ( name, value) => {
 
-    const  validationsFrom = () => {
+        let error = "";
+
+        switch(name){
+
+            case "name":
+        
         if (
-            !validations.name.pattern.test(
-                formData.name
-            )
-
+            !validations.name.pattern.test(value)
         ){
-            toast.error(
-                validations.name.message
-            );
-            return false;
+            error = validations.name.message;
         }
+        break;
+
+        case "email":
         if(
-            !validations.email.pattern.test(
-                formData.email)
+            !validations.email.pattern.test(value)
             ){
-               toast.error(
-            validations.email.message
-        );
-          return false;
-        }
+               error = validations.email.message;
+            }
+            break;
 
+        case "password":
         if(
-            !validations.password.pattern.test(
-                formData.password
-            )
-        ){toast.error(
-            validations.password.message
-        );
-        return false;
+            !validations.password.pattern.test(value)
+        ){
+            error = validations.password.message;
       }
-      return true;
-
+      break;
+      default:
+      break;
     };
+
+    setErrors(prev => ({
+        ...prev,
+        [name]: error
+    }));
+};
+
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev =>({
+        ...prev,
+        [name]: value
+    }));
+    validationsField(name, value);
+};
+
+const validationsForm = () => {
+    if(
+        !validations.name.pattern.test(formData.name)
+    ) return false;
+    if(
+        !validations.email.pattern.test(formData.email)
+    ) return false;
+    if(
+        !validations.password.pattern.test(formData.password)
+    ) return false;
+
+    return true;
+};
+
+
 
 
     const handleSubmit = async(e) => {
@@ -90,9 +116,22 @@ export default function Register(){
         <div
           className="register-page"
         >
-            <h1>Crear Cuenta</h1>
+            <div
+            className="register-container"
+            >
 
-            <form onSubmit={handleSubmit}>
+            <h1
+            className="register-title"
+            >
+            Crear Cuenta
+            </h1>
+
+            <form 
+            className="register-form"
+            onSubmit={handleSubmit}
+            >
+                <label>Nombre Completo</label>
+
                 <input
                 type= "text"
                 name= "name"
@@ -100,6 +139,12 @@ export default function Register(){
                 value= {formData.name}
                 onChange={handleChange}
                 />
+                {errors.name && (
+                    <span className="error">
+                        {errors.name}
+                    </span>
+                )}
+                <label>Email</label>
 
                 <input
                  type="email"
@@ -107,7 +152,14 @@ export default function Register(){
                  placeholder="Email"
                  value={formData.email}
                  onChange={handleChange}
-                />
+                 />
+                { errors.email && (
+                    <span className="error">
+                        {errors.email}
+                    </span>
+                )}
+
+                <label>Contrasena</label>
 
                 <input
                  type= "password"
@@ -116,7 +168,11 @@ export default function Register(){
                  value={formData.password}
                  onChange={handleChange}
                  />
-
+                  { errors.password && (
+                    <span className="error">
+                        {errors.password}
+                    </span>
+                )}
 
                  <button 
                  
@@ -126,6 +182,14 @@ export default function Register(){
                  </button>   
 
             </form>
+            <p 
+            className="register-link">
+           ¿Ya tienes cuenta?{" "}
+        <Link to="/login">
+          Iniciar Sesion
+        </Link>
+    </p>
+        </div>
         </div>
     );
 }

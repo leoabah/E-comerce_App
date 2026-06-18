@@ -1,81 +1,195 @@
-import { useState } from "react";
-import { toast } from "react-hot-toast"
+import { useState,useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
+import { AuthContext } from "@/context/AuthContext";
 import authApi from "../api/authApi";
+import { validations } from "../utils/formValidations";
+import "../styles/login.scss";
+import { Value } from "sass";
+ 
 
-export  default function Login(){
+export default function Login(){
 
-    const [formData , setFormData]= useState({
+    const {login}= useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const [formData, setFormData]= useState({
         email:"",
         password:""
     });
 
-    const handleChange= (e) => {
+    const [errors, setErrors]= useState({});
 
-        setFormData({ 
-        ... formData,
-        [e.target.name]: e.target.value
-      });
+    const validateField = (name, Value) => {
+        let error = "";
+
+        switch(name){
+
+            case "email":
+                if (
+                    !validations.email.pattern.test(Value)
+                ){
+                    error = validations.email.message;
+                }
+
+                break;
+
+            case "password":
+
+                if (
+                    !validations.password.pattern.test(Value)
+                ){
+                    error = validations.password.message;
+                }
+
+                break;
+
+                default:
+                break;
+        }
+
+        setErrors(prev => ({
+            ...prev,
+            [name]:error
+        }));
     };
-    const handleSubmit  = async (e) => {
-        e.preventDefault ();
-        
-        try{
-            const response = await authApi.post( 
-            "/login",
-            formData
-        );
-        console.log(response.data);
-        localStorage.setItem(
-            "token",
-            response.data.token
-        );
 
-        localStorage.setItem(
-            "user",
-            JSON.stringify(response.data.user)
-        );
-        toast.success(
-            response.data.message
-        );
-        } catch (error){
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+
+        validateField(name, value);
+    };
+
+    const validationsFrom = () => {
+
+        validateField("email", formData.email);
+        validateField("password", formData.password);
+
+        if(
+            !validations.password.pattern.test(
+                formData.password
+            )
+        ){
+            return false;
+        }
+
+        if (
+            !validations.password.pattern.test(
+                formData.password
+            )
+        ){
+            return false;
+        }
+        return true;
+    
+    };
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefaul();
+
+        if (!validationsFrom()) {
+                toast.errror(
+                    "Corrige los errores del formulario"
+            );
+            return;
+
+        }
+        try { 
+            const response = await authApi.post(
+                "/login",
+                formsdata
+            );
+
+            login(
+                response.data.user,
+                response.data.token
+            );
+
+            toast.success(
+                response.data.message
+            );
+
+            navigate("/");
+
+        } catch(error) {
+
             toast.error(
-                error.response?.data?.message ||
-                "Error al inciar sesion"
+                error.response?.data?.message || "Error al iniciar sesion"
             );
         }
-      
     };
 
-    return(
+    return (
 
-        <div className="login-page">
+        <div className="login-page"
+             onSubmit={handleSubmit}
+           >
+            <div
+            className="login-container"
+            >
+                <h1 className="login-title"
+                >
+                    Iniciar Sesion
+                </h1>
+        <form 
+         className="login-form"
+         onSubmit={handleSubmit}
+         >
 
-            <h1>Iniciar Sesion</h1>
+         <label>Email</label>
 
-            <form onSubmit={handleSubmit}>
+         <input
+         type="email"
+         name="email"
+         placeholder="Ingresar tu email"
+         value={formData.email}
+         onChange={handleChange}
+         />
+         {errors.email && (
+            <span className="error">
+                {errors.email}
+            </span>
+         )}
 
-                <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                />
+         <label>Contraseña</label>
 
-                <input
-                type="password"
-                name="password"
-                placeholder="Contraseña"
-                value={formData.password}
-                onChange={handleChange}
-                />
-                
-            <button type="submit">
-                Ingresar
-            </button>
+         <input
+           type="password"
+           name="password"
+           placeholder="Ingresa tu contraseña"
+           value={formData.password}
+           onChange={handleChange}
+           />
+           {errors.password && (
+            <span
+            className="error">
+                {errors.password}
+            </span>
+           )}
 
-            </form>
+           <button type="submit">
+            Ingresar
+           </button>
+    </form>
 
-        </div>
+    <p 
+    className="register-link">
+        ¿No tienes cuenta?{" "}
+        <Link to="/register">
+          Registrate
+        </Link>
+    </p>
+
+    </div>
+
+    </div>
     );
+
 }
