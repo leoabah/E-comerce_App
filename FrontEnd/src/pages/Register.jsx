@@ -4,8 +4,11 @@ import { toast } from "react-hot-toast"
 import { validations } from "../utils/formValidations";
 import authApi from "../api/authApi";
 import "../styles/register.scss";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 export default function Register(){
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const [formData, setFormData]= useState({
         name:"",
@@ -161,21 +164,37 @@ const validationsForm = () => {
 
                 <label>Contraseña</label>
 
+                <div 
+                className="password-field"
+                >
+
                 <input
-                 type= "password"
+                 type={ showPassword ? "text" : "password"}
                  name = "password"
                  placeholder =  "contraseña"
                  value={formData.password}
                  onChange={handleChange}
                  />
                   { errors.password && (
-                    <span className="error">
+                      <span className="error">
                         {errors.password}
                     </span>
                 )}
+                <button
+                type="button"
+                className="toggle-password"
+                onClick={() =>
+                    setShowPassword(!showPassword)
+                }>
+                    {showPassword 
+                    ?<FaEyeSlash />
+                    : <FaEye />
+                }
+                </button>
+                </div>
 
                  <button 
-                 
+                 className="btn-submit"
                  type = "submit"
                  >
                     Registrarse

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaSearch, FaShoppingCart, FaUserCircle , FaBars, FaTimes} from 'react-icons/fa'
+import { FaSearch, FaShoppingCart, FaUser , FaBars, FaTimes} from 'react-icons/fa'
 import { useContext } from "react"
 import { CartContext } from  "@/context/CartContext"
 import logoHeader from "@/assets/logo.png"
@@ -9,6 +9,8 @@ import { AuthContext } from '../context/AuthContext'
 
 
 export default function Header() {
+
+  
 
   const  { totalItems } = useContext(CartContext);
 
@@ -103,12 +105,12 @@ export default function Header() {
                    style={{display: 'flex',
                           alignItems: 'center', 
                           gap: '8px',
-                          width:'5rem'
+                          width:'6rem'
                         }}
                     
                     >
 
-                    <FaUserCircle size={24} />
+                    <FaUser size={24} />
 
                     {firstName}
 
@@ -117,6 +119,7 @@ export default function Header() {
                   <button 
                      onClick={handleLogout} 
                      className='registrarse-btn'
+                     style={{background:"crimson"}}
                   >
                     Cerrar
                   </button>

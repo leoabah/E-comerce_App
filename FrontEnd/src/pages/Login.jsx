@@ -6,12 +6,14 @@ import { AuthContext } from "@/context/AuthContext";
 import authApi from "../api/authApi";
 import { validations } from "../utils/formValidations";
 import "../styles/login.scss";
-import { Value } from "sass";
+import { FaEye , FaEyeSlash } from "react-icons/fa";
  
 
-export default function Login(){
+export default function Login() {
 
-    const {login}= useContext(AuthContext);
+    const { login }= useContext(AuthContext);
+
+    const [showPassword, setShowPassword]= useState(false);
 
     const navigate = useNavigate();
 
@@ -22,14 +24,14 @@ export default function Login(){
 
     const [errors, setErrors]= useState({});
 
-    const validateField = (name, Value) => {
+    const validateField = (name, value) => {
         let error = "";
 
         switch(name){
 
             case "email":
                 if (
-                    !validations.email.pattern.test(Value)
+                    !validations.email.pattern.test(value)
                 ){
                     error = validations.email.message;
                 }
@@ -39,7 +41,7 @@ export default function Login(){
             case "password":
 
                 if (
-                    !validations.password.pattern.test(Value)
+                    !validations.password.pattern.test(value)
                 ){
                     error = validations.password.message;
                 }
@@ -66,36 +68,24 @@ export default function Login(){
         validateField(name, value);
     };
 
-    const validationsFrom = () => {
+    const validateForm = () => {
 
         validateField("email", formData.email);
         validateField("password", formData.password);
 
-        if(
-            !validations.password.pattern.test(
-                formData.password
-            )
-        ){
-            return false;
-        }
-
-        if (
-            !validations.password.pattern.test(
-                formData.password
-            )
-        ){
-            return false;
-        }
-        return true;
+        return(
+            validations.email.pattern.test(formData.email) &&
+            validations.password.pattern.test(formData.password)
+        );
     
     };
 
     const handleSubmit = async (e) => {
 
-        e.preventDefaul();
+        e.preventDefault();
 
-        if (!validationsFrom()) {
-                toast.errror(
+        if (!validateForm()) {
+                toast.error(
                     "Corrige los errores del formulario"
             );
             return;
@@ -104,7 +94,7 @@ export default function Login(){
         try { 
             const response = await authApi.post(
                 "/login",
-                formsdata
+                formData
             );
 
             login(
@@ -119,21 +109,24 @@ export default function Login(){
             navigate("/");
 
         } catch(error) {
+            console.log("ERROR COMPLETO:", error);
 
+    console.log("RESPONSE:", error.response);
+
+    console.log("DATA:", error.response?.data);
             toast.error(
-                error.response?.data?.message || "Error al iniciar sesion"
+                error.response?.data?.message ||
+                 "Error al iniciar sesion"
             );
         }
     };
 
     return (
 
-        <div className="login-page"
-             onSubmit={handleSubmit}
-           >
-            <div
-            className="login-container"
-            >
+        <div className="login-page">
+
+            <div className="login-container">
+
                 <h1 className="login-title"
                 >
                     Iniciar Sesion
@@ -160,28 +153,50 @@ export default function Login(){
 
          <label>Contraseña</label>
 
+         <div 
+         
+         className="password-field">
+
          <input
-           type="password"
+           type={ showPassword ? "text":"password"}
            name="password"
-           placeholder="Ingresa tu contraseña"
+           placeholder="contraseña"
            value={formData.password}
            onChange={handleChange}
            />
            {errors.password && (
-            <span
-            className="error">
+               <span
+               className="error">
                 {errors.password}
             </span>
            )}
+           <button
+           type="button"
+           className="toggle-password"
+           onClick={() =>
+           setShowPassword(!showPassword)
+        }
+        >
+        {
+           showPassword
+        ? <FaEyeSlash />
+        : <FaEye />
+    }
+        </button>
+        </div>
 
-           <button type="submit">
+           <button 
+           className="btn-submit"
+            type="submit">
             Ingresar
            </button>
     </form>
 
     <p 
     className="register-link">
+
         ¿No tienes cuenta?{" "}
+
         <Link to="/register">
           Registrate
         </Link>
