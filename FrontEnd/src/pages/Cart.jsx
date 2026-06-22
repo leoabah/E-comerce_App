@@ -2,11 +2,12 @@ import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "@/styles/cart.scss"
-import authApi from "../api/authApi.js"
+import orderApi from "../api/orderApi.js";
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-hot-toast";
 
 export default function Cart(){
+
      const navigate = useNavigate();
 
      const {
@@ -30,10 +31,16 @@ export default function Cart(){
        }
 
        try{
-        const response =  await authApi.post (
-        "/orders",
+
+        const products = cart.map(item =>({
+            productId: item._id,
+            quantity: item.quantity
+        }));
+        console.log("PRODUCTOS A ENVIAR:", products);
+        const response =  await orderApi.post (
+        "/",
         {
-            products:cart,
+            products,
             total: totalPrice
         },
         {
@@ -51,7 +58,7 @@ export default function Cart(){
 
        clearCart();
 
-       NavigateEvent("/perfil");
+       navigate("/perfil");
 
     } catch(error) {
 
@@ -71,7 +78,9 @@ export default function Cart(){
             <br />
 
             {cart.length === 0 ? (
-                <p style={{"fontSize":"40px","textAlign":"center"}}>
+                <p style={{"fontSize":"40px",
+                           "textAlign":"center"
+                           }}> 
                     <strong>
                         <em>carrito esta </em> vacio
                     </strong>
@@ -79,7 +88,7 @@ export default function Cart(){
             ) : (
                 <>
                 {cart.map(item => (
-                    <div key={item.id}
+                    <div key={item._id}
                     className="cart-item"
                     >
                         <img 
@@ -94,7 +103,7 @@ export default function Cart(){
                         <h3>{item.title}</h3>
 
                         <p>
-                            x{item.quantity}
+                            X{item.quantity}
                         </p>
 
                         <p>
@@ -102,7 +111,7 @@ export default function Cart(){
                         </p>
                         <div className="quantity-controls">
                             <button onClick={() =>
-                                decreaseQuantity(item.id)
+                                decreaseQuantity(item._id)
                             }className="btn-count"
                             >
                             <FaMinus />
@@ -113,7 +122,7 @@ export default function Cart(){
 
                             <button
                              onClick={()=> 
-                                increaseQuantity(item.id)
+                                increaseQuantity(item._id)
                              }className="btn-count"
                             >
                             <FaPlus />
@@ -121,7 +130,7 @@ export default function Cart(){
                         </div>
                         <button 
                         onClick={() =>
-                            removeFromCart(item.id)
+                            removeFromCart(item._id)
                         } 
                         className="btn-cart"
                         >

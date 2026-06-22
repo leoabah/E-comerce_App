@@ -5,18 +5,20 @@ export const createOrder = async (
     req,
     res
 ) => {
+    console.log("BODY", req.body);
     try{
 
         const order =
         await Order.create({
             user:req.user.id,
-            products:req.body.prducts,
+            products:req.body.products,
             total: req.body.total
         });
+        console.log("ORDER CREADA:", order);
 
         res.status(201).json({
             message:
-            "orden creada",
+            "orden creada correctamente",
             order
         });
     } catch(error){
@@ -31,13 +33,13 @@ export const getMyOrders = async (
     res
 ) => {
     try {
-        const ordres = await Order.find({
+        const order = await Order.find({
             user:req.user.id
         })
         .populate(
-           "products.product"
+           "products.productId"
         );
-        res.json(orders);
+        res.json(order);
     } catch(error){
         res.status(500).json({
             message: error.message

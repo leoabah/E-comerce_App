@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom"
 import { useEffect,useState } from "react";
 import productsApi from "../api/productsApi";
-import { img } from "framer-motion/client";
+
 
 
 export default function ProductDetail(){
