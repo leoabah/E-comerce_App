@@ -32,7 +32,7 @@ export const Alta = () => {
   return (
      <div className='alta-contain'>
       <section className='alta-container'>
-       <div>
+       <div className="alta-image">
           <img 
            src={imgALtas}
            alt='banner de formulario'

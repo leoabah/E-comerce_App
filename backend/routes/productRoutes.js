@@ -1,4 +1,5 @@
 import express from "express";
+import authMiddleware from "../middleware/authMiddleware.js";
 
  import {
     getProducts,
@@ -14,7 +15,7 @@ import express from "express";
 
  router.get("/:id", getProductById);
 
- router.post("/", createProduct);
+ router.post("/",  authMiddleware,createProduct);
 
  router.put("/:id", updateProduct)
 

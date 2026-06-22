@@ -26,13 +26,18 @@
 .alta-form-container{
     color: #fdfbf7;
    
-
     h1{
         font-size: 4.5rem;
         
         font-weight: bold;
         
     }
+}
+.alta-form-title{
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #fdfbf7;
 }
 
 .alta-form{
@@ -41,34 +46,38 @@
     gap: 1rem;
 }
 
-.fomr-group{
+.form-group{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     
     label{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: bolder;
 
     }
-    input,textarea{
+    input,
+    textarea{
         width: 100%;
-        background: #14031f;
-        border: 2px solida #fdfbf7;
+        background: #fdfbf7;
+        border: 2px solid #fdfbf7;
         padding: 1rem;
-        color: #fdfbf7;
+        color: #121212;
         font-size: 1rem;
         outline: none;
+        border-radius: 8px;
     }
     textarea{
-        border-radius: 8px;
+       
         resize: none;
         min-height: 120px;
     }
-    input::placeholder,textarea::placeholder{
+    input::placeholder,
+    textarea::placeholder{
         color: #ffffff99;
     }
 }
+
 .checkbox-group{
     display: flex;
     gap: 2rem;
@@ -99,7 +108,11 @@
         transform: scale(1.05);
         background: #A68A56;
     }
-
+}
+.fomr-group input:focus,
+.fomr-group textarea:focus{
+    border-color:#8db8c8;
+    box-shadow: 0 0 10px rgba(141,184,200,.5);
 }
 
 @media (min-width:769px) and (max-width:1024px) {

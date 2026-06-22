@@ -1,6 +1,7 @@
 
 .main-cartshop{
    background-color: #7185da;
+   min-height: 100vh;
 }
 .cart-item {
     border: 3px solid #ddd;
@@ -12,6 +13,14 @@
     font-weight: 600;
     justify-content: space-between;
     font-size: 1.5rem;
+
+    img {
+         width: 70px;
+         height: 70px;
+         border-radius: 8px;
+    }
+
+
 
       &:hover{
         background-color: white;
@@ -42,14 +51,38 @@
     color:#f6f4f2;
 }
 .btn-cart{
-    width: 5rem;
+    width: 7rem;
     padding: 0.5rem;
     border-top-right-radius:8px ;
     border-bottom-left-radius:8px ;
     font-weight: 600;
     color:#f6f4f2;
-    background-color:#1b1e3d ;
+    background-color:#1b1e3d;
 }
+
+.botton-cart{
+    display: flex;
+    justify-content:space-around;
+    align-content: end;
+    padding: 1rem;
+    
+
+    button{
+        width: 8.5rem;
+        padding: 0.5rem;
+        border-top-right-radius:8px ;
+        border-bottom-left-radius:8px ;
+        font-weight: 550;
+        color:#f6f4f2;
+        background-color:#1b1e3d;
+
+        &:hover{
+            background:#E5C38E;
+            color: #121212;
+        }
+    }
+}
+
 
 span {
     font-size:1.1rem;

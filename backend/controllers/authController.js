@@ -43,7 +43,7 @@ export const login = async (req, res) => {
         const { email, password } = req.body;
 
         const  user = await User.findOne({ email });
-
+              
         if(!user){
             return res.status(400).json({
                 message:"Credencial invalidas"
@@ -55,7 +55,7 @@ export const login = async (req, res) => {
         user.password
     );
 
-    if (isMatch){
+    if (!isMatch){
         return res.status(400).json({
             message: "Credenciales invalidas"
         });
