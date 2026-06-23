@@ -1,6 +1,6 @@
 import axios from "axios";
 
  const orderApi = axios.create({
-    baseURL:"http://localhost:3000/api/orders"
+    baseURL:"https://libreria-cosmica-backend.onrender.com/api/orders"
  });
   export default orderApi;

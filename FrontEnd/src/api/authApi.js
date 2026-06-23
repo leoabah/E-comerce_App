@@ -1,7 +1,7 @@
 import axios from "axios";
  
 const authApi = axios.create({
-    baseURL: "http://localhost:3000/api/auth/"
+    baseURL: "https://libreria-cosmica-backend.onrender.com/api/auth/"
 });
 
 export default authApi;
