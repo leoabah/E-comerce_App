@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
-import { h1 } from "framer-motion/client";
+
 
 
 export default function Profile() {
