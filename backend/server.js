@@ -12,10 +12,23 @@ import productRoutes from "./routes/productRoutes.js";
 dotenv.config();
 
 const app = express();
+ const allowedOrigins =[
+    "http://localhost:5173",
+     "https://leoabah.github.io",
+        "https://e-comerce-app-swart.vercel.app",
+    "https://e-comerce-8hbbdvt8b-leoabahs-projects.vercel.app" 
+ ];
 
 app.use(cors({
-    origin: [ "http://localhost:5173",
-        "https://leoabah.github.io"]
+    origin: function(origin,callback){
+        if(!origin || allowedOrigins.includes(origin)){
+            callback(null,true);
+        } else{
+            callback(new Error(
+                "No permitido por CORS")
+            );
+        }
+    }
 }));
 
 app.use(express.json());
