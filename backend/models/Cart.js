@@ -1,4 +1,4 @@
-import { image } from "framer-motion/client";
+
 import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema(

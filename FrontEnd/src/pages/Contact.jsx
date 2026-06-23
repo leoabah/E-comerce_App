@@ -1,4 +1,4 @@
-//import { div } from 'framer-motion/client';
+
 import { useState} from 'react'
 import { toast } from 'react-hot-toast'
 import imgALtas from "@/assets/imgALtas.png";

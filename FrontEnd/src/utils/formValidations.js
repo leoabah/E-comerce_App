@@ -1,4 +1,4 @@
-import { pattern } from "framer-motion/client";
+
 
 
 export const validations = {
