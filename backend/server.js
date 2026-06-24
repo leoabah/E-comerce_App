@@ -14,8 +14,9 @@ dotenv.config();
 const app = express();
  const allowedOrigins =[
     "http://localhost:5173",
-     "https://leoabah.github.io",
-        "https://e-comerce-app-swart.vercel.app",
+    "http://localhost:5174",
+    "https://leoabah.github.io",
+    "https://e-comerce-app-swart.vercel.app",
     "https://e-comerce-8hbbdvt8b-leoabahs-projects.vercel.app" 
  ];
 
