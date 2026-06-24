@@ -1,11 +1,36 @@
-import { useContext } from "react"
+import { useContext, useState , useEffect } from "react"
 import { AuthContext } from "../context/AuthContext"
-
+import orderApi from "../api/orderApi";
 
 
 export default function Profile() {
 
     const { user } = useContext(AuthContext);
+    const [orders, setOrders]= useState([]);
+
+    useEffect(() =>{
+        const getOrders = async () => {
+            try{
+                const token = 
+                localStorage.getItem("token");
+                const response = 
+                await orderApi.get(
+                    "/my-orders",
+                    {
+                        headers:{
+                            Authorization :
+                            `Bearer ${token}`
+                        }
+                    }
+                );
+             setOrders(response.data);
+            } catch (error){
+                console.error(error);
+            }
+        };
+        getOrders();
+        
+    }, []);
 
     return(
         <div className="profile-page">

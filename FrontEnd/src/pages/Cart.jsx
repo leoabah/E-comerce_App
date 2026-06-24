@@ -36,7 +36,7 @@ export default function Cart(){
             productId: item._id,
             quantity: item.quantity
         }));
-        console.log("PRODUCTOS A ENVIAR:", products);
+        
         const response =  await orderApi.post (
         "/",
         {
