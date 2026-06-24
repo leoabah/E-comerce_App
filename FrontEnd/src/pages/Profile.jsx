@@ -29,11 +29,14 @@ export default function Profile() {
             }
         };
         getOrders();
-        
+
     }, []);
 
     return(
-        <div className="profile-page">
+
+        <div 
+          className="profile-page">
+            
 
             <h1>Perfil</h1>
 
@@ -55,8 +58,47 @@ export default function Profile() {
                     {user?.role}
                 </p>
 
-            </div>
+            <h2>Mis Compras</h2>
+
+            <div 
+            className="orders-container">
+
+            {orders.length === 0 ? (
+                <p>No posees compras todavia.</p>
+            ) : (
+                orders.map((order) => (
+                    <div
+                    key={order._id}
+                    className="order-card"
+                    >
+                        <p>
+                            <strong>Fecha:</strong>{" "}
+                            { order.createAt
+                            ? new Date(order.createAt).    toLocaleTimeString("es-AR")
+                            : "Sin fecha"}
+                        </p>
+
+                        <ul>
+                            {order.products.map((item) => (
+                                <li
+                                key={item._id}>
+                                    {item.productoId?.title || item.productId || "Producto eliminado"}
+                                    {"  | cantidad: "}
+                                    {item.quantity}
+                                </li>
+                            ))}
+                        </ul>
+
+                        <p className="order-total">
+                            Total: ${order.total}
+                        </p>
+                    </div>
+                ))
+            )}
+
+          </div> 
+          </div> 
 
         </div>
-    );
+    )
 }
