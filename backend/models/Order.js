@@ -1,3 +1,4 @@
+import { number } from "framer-motion";
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
@@ -15,18 +16,28 @@ const orderSchema = new mongoose.Schema({
             ref:"Product"
         },
 
-        quantity:{
-            type:Number,
-            default: 1
-        }
+        quantity:Number
     }
 ],
 
-total: {
-    type: Number,
-    required: true
+total: Number,
+
+status: {
+    type:String,
+    enum:[
+        "pendiente",
+        "pagado",
+        "cancelado"
+    ],
+    default:"pendiente"
+},
+
+paymentMethod:{
+    type:String,
+    default:"pendiente"
 }
-}, {
+},
+ {
     timestamps: true
 });
 

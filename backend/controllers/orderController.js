@@ -46,3 +46,25 @@ export const getMyOrders = async (
         });
     }
 };
+
+export const getAllOrders = async(
+    req,res
+)=>{
+    try{
+         const orders =
+         await Order.find()
+            .populate(
+                "user",
+                "name email"
+            )
+            .populate(
+                "products.productId"
+            );
+            res.json(orders);
+         
+    }catch(error){
+        res.status(500).json({
+            massenge:error.massege
+        });
+    }
+};
