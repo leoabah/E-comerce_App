@@ -1,6 +1,8 @@
 import { useContext, useState , useEffect } from "react"
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext"
 import orderApi from "../api/orderApi";
+import "../styles/Profile.scss"
 
 
 export default function Profile() {
@@ -22,7 +24,7 @@ export default function Profile() {
                             `Bearer ${token}`
                         }
                     }
-                );
+                )
              setOrders(response.data);
             } catch (error){
                 console.error(error);
@@ -32,6 +34,9 @@ export default function Profile() {
 
     }, []);
 
+    console.log(user);
+console.log(user?.role);
+
     return(
 
         <div 
@@ -39,6 +44,21 @@ export default function Profile() {
             
 
             <h1>Perfil</h1>
+          
+            {
+                user?.role === "Admin" && (
+                    
+                    <Link 
+                    to="/admin"
+                    className="admin-link"
+                    >
+
+                        Dashboard Admin
+
+                    </Link>
+                )
+            }
+            
 
             <div className="profile-card">
 
@@ -73,8 +93,8 @@ export default function Profile() {
                     >
                         <p>
                             <strong>Fecha:</strong>{" "}
-                            { order.createAt
-                            ? new Date(order.createAt).    toLocaleTimeString("es-AR")
+                            { order.createdAt
+                            ? new Date(order.createdAt).    toLocaleTimeString("es-AR")
                             : "Sin fecha"}
                         </p>
 
@@ -82,7 +102,7 @@ export default function Profile() {
                             {order.products.map((item) => (
                                 <li
                                 key={item._id}>
-                                    {item.productoId?.title || item.productId || "Producto eliminado"}
+                                    {item.productId?.title ||  "Producto eliminado"}
                                     {"  | cantidad: "}
                                     {item.quantity}
                                 </li>

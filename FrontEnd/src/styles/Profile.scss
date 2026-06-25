@@ -6,6 +6,22 @@
     color: #FDFBF7;
 }
 
+.admin-link{
+    display:inline-block;
+    margin: 1rem 0;
+    padding:0.8rem 1.5rem;
+    background: #8DB8C8;
+    color: #14031F;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    transition:.3s;
+}
+.admin-link:hover{
+    background: #A68A56;
+    transform: scale(1.05);
+}
+
 .profile-page h1{
     text-align: center;
     font-size: 3rem;
@@ -13,8 +29,8 @@
 }
 
 .profile-card{
-    max-width: 700px;
-    margin:auto0 auto 3rem auto;
+    max-width: none;
+    margin:0 auto 3rem auto;
     background: #5B6BB1;
     border-radius: 16px;
     padding: 2rem;

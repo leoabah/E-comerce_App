@@ -24,7 +24,7 @@ export default function Home() {
       try {
 
          const response =
-         await productsApi.get("/products");
+         await productsApi.get("/");
 
          response.data.forEach(product => {
             console.log(product)
