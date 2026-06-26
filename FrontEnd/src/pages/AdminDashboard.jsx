@@ -2,7 +2,15 @@ import { useEffect, useState } from "react";
 import productsApi from "../api/productsApi";
 import { Link } from "react-router-dom";
 import "../styles/adminDashboard.scss";
-
+import {
+    FaBook,
+    FaBoxes,
+    FaDollarSign,
+    FaShoppingCart,
+    FaPlus,
+    FaPen,
+    FaTrash
+} from "react-icons/fa"
 
 
 
@@ -70,6 +78,7 @@ await productsApi.delete(`/${id}`);
     );
 
 return (
+
     <div className="admin-dashboard">
 
         <h1 className="admin-title">
@@ -80,44 +89,82 @@ return (
          "admin-cards"
          >
             <div
-            className=
-            "admin-card"
-            >
+            className="admin-card">
+
+                <div className="card-icon products">
+                    <FaBook />
+                </div>
+
                 <h3>Productos</h3>
+
                 <span>{totalProducts}</span>
+
+                <small>Total de productos</small>
+
             </div>
 
             <div
-            className=
-            "admin-card"
-            >
+            className="admin-card">
+                <div className="card-icon stock">
+                    <FaBoxes />
+                </div>
+
                 <h3>Stock Total</h3>
                 <span>{totalStock}</span>
+
+                <small>Unidades disponibles</small>
             </div>
 
             <div
             className=
             "admin-card"
             >
+                <div className="card-icon money">
+                    <FaDollarSign />
+                </div>
+
                 <h3>Valor Inventario</h3>
-                <span>{totalValue}</span>
-            </div>
+                <span>
+                    ${totalValue.toLocaleString("es-Ar")}
+                </span>
+
+                <small>Valor total</small>
+
+                </div>
 
             <div
             className=
             "admin-card"
             >
+                <div className="card-icon orders">
+                    <FaShoppingCart />
+                </div>
+
                 <h3>Pedidos</h3>
                 <span>0</span>
+                <small>Total realizados</small>
             </div>
 
         </div>
         <div
         className="products-section">
+            <div className="product-hearder">
+
             <h2>Productos</h2>
+
+            <Link to="/alta"
+            className="btn-add">
+            
+            <FaPlus />
+            Añadir Producto
+
+            </Link>
+
+            </div>
+
             <div className="table-container">
             <table
-            className=" products-table">
+            className=" product-table">
              <thead>
                 <tr>
                     <th>Imagen</th>
@@ -149,7 +196,8 @@ return (
                     <Link to={`/edit/${product._id}`}>
 
                        <button className="btn-edit">
-                        ✏ Editar
+                        <FaPen />
+                        Editar
                        </button>
                     </Link>
 
@@ -159,7 +207,8 @@ return (
                         handleDelete(product._id)
                     }
                     >
-                        🗑 Eliminar
+                        <FaTrash />
+                        Eliminar
                     </button>
 
                 </td>

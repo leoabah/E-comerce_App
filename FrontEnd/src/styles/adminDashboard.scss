@@ -45,25 +45,25 @@
     padding: 2rem;
 }
 
-.products-table{
+.product-table{
     width: 100%;
     border-collapse: collapse;
     margin-top: 2rem;
 }
 
-.products-table thead{
+.product-table thead{
     background: #1c2338;
 }
 
-.products-table td{
+.product-table td{
     text-align: center;
     padding:18px;
 }
-.products-table td:nth-child(2){
+.product-table td:nth-child(2){
     text-align: left;
 }
 
-.products-table th {
+.product-table th {
    padding:18px;
    color:#dfe5ff;
    text-transform: uppercase;
@@ -71,14 +71,14 @@
    font-size: .9rem;
 }
 
-.products-table:hover {
+.product-table:hover {
     background: rgba(255, 255, 255, .08);
 }
 
-.products-table tbody tr{
+.product-table tbody tr{
     border-bottom:  1px solid rgba(255, 255, 255, .08);
 }
-.products-table tbody tr:hover{
+.product-table tbody tr:hover{
     background: rgba(255, 255, 255, .04);
 }
 
