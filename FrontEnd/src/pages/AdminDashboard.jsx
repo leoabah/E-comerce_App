@@ -24,7 +24,7 @@ export default function AdminDashboard() {
         "Eliminar producto?"
     );
 
-    if(confirmar) return;
+    if(!confirmar) return;
 
     try{
 await productsApi.delete(`/${id}`);
@@ -151,7 +151,7 @@ return (
             <div className="product-hearder">
 
             <h2>Productos</h2>
-
+            <br />
             <Link to="/alta"
             className="btn-add">
             
@@ -163,6 +163,7 @@ return (
             </div>
 
             <div className="table-container">
+
             <table
             className=" product-table">
              <thead>
@@ -177,12 +178,14 @@ return (
 
             <tbody>
 
-            {products.map(product =>(
+            {products.map(product =>{
+
+               return(
                 <tr
                 key={product._id}>
                     <td>
                         <img
-                          src={product.image}
+                          src={product.image[0]}
                           alt={product.title}
                           className="table-image"
                           />
@@ -214,8 +217,8 @@ return (
                 </td>
 
               </tr>  
-
-))}
+               );
+})}
 
             </tbody>
 
