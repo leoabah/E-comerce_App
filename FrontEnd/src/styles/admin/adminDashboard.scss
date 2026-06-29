@@ -1,3 +1,17 @@
+
+
+.admin-layout{
+    display: flex;
+    min-height: 100vh;
+    background: #0b1020;
+}
+.admin-content{
+    flex: 1;
+    padding: 32px;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 .admin-dashboard {
     min-width: 100vh;
     background: #4f5da6;
@@ -8,6 +22,12 @@
 .admin-title {
     text-align: center;
     margin-bottom: 2rem;
+}
+.admin-cards{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 24px;
+    margin-bottom: 30px;
 }
 
 .admin-card {
@@ -46,11 +66,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .product-table{
-    width: 100%;
+    min-width: 900px;
     border-collapse: collapse;
     margin-top: 2rem;
 }
@@ -86,7 +107,7 @@
 }
 
 .table-container{
-    overflow: hidden;
+    overflow-x: auto;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, .08)
 }
@@ -189,4 +210,34 @@
         background: #ef4444;
         color: #fdfbf7;
     }
+}
+
+@media (max-width:1024px) {
+    .admin-cards{
+        grid-template-columns: 2,1fr;
+    }
+}
+@media(max-width:1100px){
+
+.admin-cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media (max-width:768px) {
+    .admin-cards{
+        grid-template-columns: 1fr;
+    }
+}
+@media(max-width:700px){
+
+.admin-cards{
+
+grid-template-columns:1fr;
+
+}
+
 }

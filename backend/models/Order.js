@@ -1,5 +1,6 @@
 import { number } from "framer-motion";
 import mongoose from "mongoose";
+import { types } from "sass";
 
 const orderSchema = new mongoose.Schema({
 
@@ -32,6 +33,12 @@ status: {
     default:"pendiente"
 },
 
+status :{
+    type: String,
+    enum:["Pendiente","Pagado","Cancelado"],
+    default:"Pendiente"
+},
+
 paymentMethod:{
     type:String,
     default:"pendiente"
@@ -41,8 +48,10 @@ paymentMethod:{
     timestamps: true
 });
 
+
 export default mongoose.model(
     "Order",
     orderSchema
 );
+
 

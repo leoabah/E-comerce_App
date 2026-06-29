@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import productsApi from "../api/productsApi";
-import { Link } from "react-router-dom";
-import "../styles/adminDashboard.scss";
-import {
-    FaBook,
-    FaBoxes,
-    FaDollarSign,
-    FaShoppingCart,
-    FaPlus,
-    FaPen,
-    FaTrash
-} from "react-icons/fa"
+import { FaSearch } from "react-icons/fa";
+import "../styles/admin/adminDashboard.scss";
+
+import Sidebar from "../components/admin/Sidebar";
+import HearderAdmin from "../components/admin/HeaderAdmin";
+import ProductTable from "../components/admin/ProductTable";
+import DashboardCards from "../components/admin/DashboardCards";
 
 
 
 export default function AdminDashboard() {
 
- 
+    const [search , setSearch]=useState("");
+    
+    const [ products, setProducts]= useState([]);
+
+const filteredProducts = products.filter(product => product.title
+.toLowerCasel()
+.includes(search.toLowerCase())
+);
 
  const handleDelete = async(id) =>{
 
@@ -41,7 +44,6 @@ await productsApi.delete(`/${id}`);
 
  };
 
- const [ products, setProducts]= useState([]);
 
   useEffect(() =>{
 
@@ -79,153 +81,33 @@ await productsApi.delete(`/${id}`);
 
 return (
 
-    <div className="admin-dashboard">
+    <div className="admin-layout">
 
-        <h1 className="admin-title">
-            Dashboard Admin
-        </h1>
-        <div
-         className=
-         "admin-cards"
-         >
-            <div
-            className="admin-card">
-
-                <div className="card-icon products">
-                    <FaBook />
-                </div>
-
-                <h3>Productos</h3>
-
-                <span>{totalProducts}</span>
-
-                <small>Total de productos</small>
-
-            </div>
-
-            <div
-            className="admin-card">
-                <div className="card-icon stock">
-                    <FaBoxes />
-                </div>
-
-                <h3>Stock Total</h3>
-                <span>{totalStock}</span>
-
-                <small>Unidades disponibles</small>
-            </div>
-
-            <div
-            className=
-            "admin-card"
-            >
-                <div className="card-icon money">
-                    <FaDollarSign />
-                </div>
-
-                <h3>Valor Inventario</h3>
-                <span>
-                    ${totalValue.toLocaleString("es-Ar")}
-                </span>
-
-                <small>Valor total</small>
-
-                </div>
-
-            <div
-            className=
-            "admin-card"
-            >
-                <div className="card-icon orders">
-                    <FaShoppingCart />
-                </div>
-
-                <h3>Pedidos</h3>
-                <span>0</span>
-                <small>Total realizados</small>
-            </div>
-
-        </div>
-        <div
-        className="products-section">
-            <div className="product-hearder">
-
-            <h2>Productos</h2>
-            <br />
-            <Link to="/alta"
-            className="btn-add">
+        <Sidebar />
+        
+        <main className="admin-content">
             
-            <FaPlus />
-            Añadir Producto
+            <HearderAdmin />
+            
+            <DashboardCards
+            totalProducts={totalProducts}
+            totalStock={totalStock}
+            totalValue={totalValue}
+            totalOrders={0}
 
-            </Link>
+            />
 
-            </div>
+        <div>
+            <ProductTable
+               products={filteredProducts}
+               handleDelete={handleDelete}
+               search={search}
+               setSearch={setSearch}
+             />
+        </div>
+        
 
-            <div className="table-container">
-
-            <table
-            className=" product-table">
-             <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>stock</th>
-                    <th>Acciones</th>
-                </tr>
-             </thead>
-
-            <tbody>
-
-            {products.map(product =>{
-
-               return(
-                <tr
-                key={product._id}>
-                    <td>
-                        <img
-                          src={product.image[0]}
-                          alt={product.title}
-                          className="table-image"
-                          />
-                    </td>
-                    <td>{product.title}</td>
-                    <td>{product.price}</td>
-                    <td>{product.stock}</td>
-
-                    <td className="actions">
-
-                    <Link to={`/edit/${product._id}`}>
-
-                       <button className="btn-edit">
-                        <FaPen />
-                        Editar
-                       </button>
-                    </Link>
-
-                    <button
-                    className="btn-delete"
-                    onClick={() =>
-                        handleDelete(product._id)
-                    }
-                    >
-                        <FaTrash />
-                        Eliminar
-                    </button>
-
-                </td>
-
-              </tr>  
-               );
-})}
-
-            </tbody>
-
-        </table>
-    </div> 
-
-    </div>
+    </main>
 
     </div>
 );
