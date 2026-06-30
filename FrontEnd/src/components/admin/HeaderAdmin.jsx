@@ -5,7 +5,7 @@ export default function HearderAdmin(){
     return (
         <header className=" admin-header">
             <div className="header-left">
-                <h1>DAshboard Admin</h1>
+                <h1>Dashboard Admin</h1>
                 <p>Panel de administracion </p>
             </div>
 

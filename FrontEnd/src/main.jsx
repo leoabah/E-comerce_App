@@ -8,6 +8,7 @@ import "./styles/main.scss"
 import { CartProvider } from './context/CartContext.jsx'
 import { Toaster } from "react-hot-toast"
 import { AuthProvider } from "./context/AuthContext.jsx"
+import { SearchProvider } from "./context/SearchContext.jsx"
 
 
 createRoot(document.getElementById('root')).render(
@@ -16,6 +17,8 @@ createRoot(document.getElementById('root')).render(
       basename= {
         import.meta.env.BASE_URL
         }>
+    <SearchProvider>
+
      <CartProvider>
       <AuthProvider>
        < App />
@@ -23,10 +26,11 @@ createRoot(document.getElementById('root')).render(
        <Toaster
          position="top-right"
          toastOptions={{
-         duration: 2500,
-         }} 
-        />
+           duration: 2500,
+          }} 
+          />
       </CartProvider>
+    </SearchProvider>
     </BrowserRouter>
   </StrictMode>,
 )

@@ -6,11 +6,14 @@ import { CartContext } from  "@/context/CartContext"
 import logoHeader from "@/assets/logo.png"
 import MiniCart from '@/components/MiniCart.jsx'
 import { AuthContext } from '../context/AuthContext'
+import SearchHome from "./SearchHome"
+import { SearchContext } from '../context/SearchContext'
 
 
 export default function Header() {
 
-  
+  const {search,setSearch}=useContext(SearchContext);
+
 
   const  { totalItems } = useContext(CartContext);
 
@@ -58,8 +61,15 @@ export default function Header() {
                  <Link to="/about" className='link-nav' >Nosotros</Link>
             
             <div className='search'>
-              <input className='inpHead'  type='text' placeholder='buscar producto...'/>
-              <button className='searchBtn'><FaSearch/></button>
+
+              <SearchHome
+                search={search}
+                setSearch={setSearch}
+              />
+
+              <button className='searchBtn'>
+                <FaSearch/>
+                </button>
             </div>
           </div>
 

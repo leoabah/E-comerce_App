@@ -1,9 +1,9 @@
 //import ProductDetail from "@/components/ProductDetail";
 import ProductsCard from "@/components/ProductsCard";
-import React, { useState , useEffect} from "react";
+import React, { useState , useEffect, useContext} from "react";
 import Carrusel from "@/components/Carrusel";
 import productsApi from "../api/productsApi";
-
+import { SearchContext } from "../context/SearchContext";
 import "@/styles/product-card.scss"
 import "@/styles/home.scss"
 import "@/styles/Carrusel.scss"
@@ -14,8 +14,15 @@ import banner3 from "@/assets/Banner3.png"
 
 
 export default function Home() {
+   
      const images =[banner1,banner2,banner3];
-     const [products ,setProducts]= useState([]);
+     const {search} = useContext(SearchContext);
+     const [products,setProducts]=useState([]);
+     const filteredProducts = products.filter(product =>
+      product.title
+      .toLowerCase()
+      .includes(search.toLowerCase())
+     );
      
     useEffect(() => {
 
@@ -88,10 +95,10 @@ export default function Home() {
           
           <div className = "products-grid">
             {
-            products.map(product => (
+            filteredProducts.map(product => (
                   < ProductsCard
                      key={product._id}
-                     products={product}
+                     product={product}
                      deleteProduct={deleteProduct}
                      />
             ) )

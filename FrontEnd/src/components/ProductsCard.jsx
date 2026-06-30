@@ -7,7 +7,7 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 
 
 export default  function ProductsCard({
-    products,
+    product,
     deleteProduct
 })  {
      
@@ -19,26 +19,23 @@ export default  function ProductsCard({
         } = useContext(CartContext); 
 
         const cartItem = cart.find(
-            item => item.id === products._id
-           
+            item => item._id === product._id
         );
 
         const isAdmin = false;
          
 
-        const imageUrl = Array.isArray(products.image)
-           ? products.image[0]
-           : products.image;
+          const imageUrl = Array.isArray(product.image)
+              ? product.image[0]
+              : product.image;
 
            console.log("BASE_URL:", import.meta.env.BASE_URL);
            console.log("IMAGE:",imageUrl)
 
            const finalImage =
            imageUrl
-           ? import.meta.env.BASE_URL
-           + imageUrl.replace("/", "")
-           : import.meta.env.BASE_URL 
-           + "placeholder.jpg"
+           ? import.meta.env.BASE_URL + imageUrl.replace("/", "")
+           : import.meta.env.BASE_URL + "placeholder.jpg";
 
            console.log("FINAL:", finalImage);
     return (
@@ -48,24 +45,22 @@ export default  function ProductsCard({
             <img 
             src={
             imageUrl
-            ? import.meta.env.BASE_URL
-             + imageUrl.replace("/","")
-            : import.meta.env.BASE_URL
-             + "placerholder.jpg"  
+            ? import.meta.env.BASE_URL + imageUrl.replace("/", "")
+            : import.meta.env.BASE_URL + "placeholder.jpg"
         }
-            alt={products.title} 
+            alt={product.title} 
             />
 
-            <h3>{products.title}</h3>
+            <h3>{product.title}</h3>
 
-            <p> ${products.price} ars</p>
+            <p> ${product.price} ars</p>
 
             {!cartItem ? (
 
             <button 
               className="btn-card"
-              onClick={()=>{
-                addToCart(products);
+                                onClick={()=>{
+                                addToCart(product);
                 toast.success(
                     "Producto agregado"
                 );
@@ -80,7 +75,7 @@ export default  function ProductsCard({
                  <button 
                     className="btn-count"
                     onClick={() =>
-                        decreaseQuantity(products._id)
+                        decreaseQuantity(product._id)
                     }
                 >
                <FaMinus/>
@@ -92,9 +87,9 @@ export default  function ProductsCard({
 
              <button 
                      className="btn-count"
-                     onClick={()=>
-                        increaseQuantity(products._id)
-                }
+                            onClick={()=>
+                                increaseQuantity(product._id)
+                     }
              >
                <FaPlus/>
              </button>
@@ -104,7 +99,7 @@ export default  function ProductsCard({
       )}  
             
             <Link 
-            to={`/products/${products._id}`} 
+            to={`/products/${product._id}`} 
             className="cart-detail"
             >
                 Ver detalles
@@ -116,14 +111,14 @@ export default  function ProductsCard({
                 <button 
                 className="btn-delete"
                 onClick={()=>
-                    deleteProduct(products._id)
+                    deleteProduct(product._id)
                 }
                 >
                    Eliminar 
                 </button>
 
                 <Link
-                to={`/edit/${products._id}`}
+                to={`/edit/${product._id}`}
                 className="btn-edit"
                 >
                     Editar
