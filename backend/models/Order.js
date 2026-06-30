@@ -1,6 +1,5 @@
 
 import mongoose from "mongoose";
-import { types } from "sass";
 
 const orderSchema = new mongoose.Schema({
 
