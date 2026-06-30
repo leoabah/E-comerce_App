@@ -1,0 +1,7 @@
+{
+  "build": {
+    "builder": "RAILPACK",
+    "buildCommand": "cd FrontEnd && npm install && npm run build && cd ../backend && npm install"
+  }
+}
+
