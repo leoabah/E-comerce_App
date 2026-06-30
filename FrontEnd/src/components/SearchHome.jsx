@@ -6,7 +6,6 @@
    return (
     
              <div className="search-Bar">
-                 <FaSearch className="search-icon" />
      
                  <input
                  type="text"

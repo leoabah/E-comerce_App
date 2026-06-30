@@ -67,9 +67,9 @@ export default function Header() {
                 setSearch={setSearch}
               />
 
-              <button className='searchBtn'>
+              {/* <button className='searchBtn'>
                 <FaSearch/>
-                </button>
+                </button> */}
             </div>
           </div>
 

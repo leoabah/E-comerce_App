@@ -54,7 +54,7 @@ export default function Home() {
 
       try{
          await productsApi.delete(
-            `/products/${id}`
+            `/${id}`
          );
          setProducts(
             products.filter(

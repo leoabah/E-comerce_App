@@ -20,7 +20,7 @@ export default function ProductDetail(){
 
                await productsApi.get(
 
-                `/products/${id}`
+                `/${id}`
 
                );
                console.log(response.data);

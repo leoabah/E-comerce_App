@@ -23,7 +23,7 @@ export default function EditProduct() {
 
                 const response =
                  await productsApi.get(
-                    `/products/${id}`
+                    `/${id}`
                 );
                 setForm(
                     response.data
@@ -49,7 +49,7 @@ export default function EditProduct() {
         e.preventDefault();
         try{
             await productsApi.put(
-                `/products/${id}`,
+                `/${id}`,
                 form
             );
             toast.success(
