@@ -18,7 +18,7 @@ export default function Sidebar(){
             <div className="sidebar-logo">
 
                 <div className="logo-circle">
-                    🌙
+                    
                 </div>
 
                 <h2>Libreria</h2>

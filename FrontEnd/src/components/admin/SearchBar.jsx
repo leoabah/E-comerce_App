@@ -1,6 +1,5 @@
-import {
-    FaSearch
-} from "react-icons/fa"
+import { FaSearch } from "react-icons/fa";
+import "../../styles/admin/_searchBar.scss"
 
 export default function SearchBar({
     search, setSearch
@@ -13,7 +12,7 @@ export default function SearchBar({
             type="text"
             placeholder="buscar Producto..."
             value={search}
-            onChangr={(e) => segtSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             />
 
         </div>

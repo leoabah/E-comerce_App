@@ -7,7 +7,7 @@ import Sidebar from "../components/admin/Sidebar";
 import HearderAdmin from "../components/admin/HeaderAdmin";
 import ProductTable from "../components/admin/ProductTable";
 import DashboardCards from "../components/admin/DashboardCards";
-
+import SearchBar from "../components/admin/SearchBar";
 
 
 export default function AdminDashboard() {
@@ -17,7 +17,7 @@ export default function AdminDashboard() {
     const [ products, setProducts]= useState([]);
 
 const filteredProducts = products.filter(product => product.title
-.toLowerCasel()
+.toLowerCase()
 .includes(search.toLowerCase())
 );
 
@@ -85,25 +85,42 @@ return (
 
         <Sidebar />
         
-        <main className="admin-content">
+    <main className="admin-content">
             
-            <HearderAdmin />
+        <HearderAdmin />
             
-            <DashboardCards
+        <DashboardCards
             totalProducts={totalProducts}
             totalStock={totalStock}
             totalValue={totalValue}
             totalOrders={0}
 
+        />
+
+        <div className="products-section">
+
+            <div className="products-top">
+
+                <h2>Productos</h2>
+
+                  <SearchBar
+
+                    search={search}
+
+                    setSearch={setSearch}
+
+                  />
+            </div>
+
+            <ProductTable
+
+               products={filteredProducts}
+
+               handleDelete={handleDelete}
+
             />
 
-        <div>
-            <ProductTable
-               products={filteredProducts}
-               handleDelete={handleDelete}
-               search={search}
-               setSearch={setSearch}
-             />
+           
         </div>
         
 

@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 
 export default function DashboardCards({
-    totalProduct,
+    totalProducts,
     totalStock,
     totalValue,
     totalOrders
@@ -21,7 +21,7 @@ export default function DashboardCards({
 
             <h3>Productos</h3>
 
-            <span>{totalProduct}</span>
+            <span>{totalProducts}</span>
 
             <small>Total de Productos</small>
 
