@@ -1,4 +1,4 @@
-import { Error } from "mongoose";
+
 import Order from "../models/Order.js"
 
 export const createOrder = async (
@@ -64,7 +64,7 @@ export const getAllOrders = async(
          
     }catch(error){
         res.status(500).json({
-            massenge:error.massege
+            message:error.message
         });
     }
 };

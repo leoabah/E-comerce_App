@@ -23,16 +23,6 @@ const orderSchema = new mongoose.Schema({
 
 total: Number,
 
-status: {
-    type:String,
-    enum:[
-        "pendiente",
-        "pagado",
-        "cancelado"
-    ],
-    default:"pendiente"
-},
-
 status :{
     type: String,
     enum:["Pendiente","Pagado","Cancelado"],

@@ -17,7 +17,7 @@
  router.get(
     "/my-orders",
      authMiddleware,
-     getAllOrders
+     getMyOrders
     ),
 
  router.get(
