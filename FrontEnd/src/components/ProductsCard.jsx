@@ -104,7 +104,7 @@ export default function ProductsCard({
           to={`/products/${product._id}`}
           className="cart-detail"
         >
-          Ver detalles
+          Ver producto
         </Link>
 
         {

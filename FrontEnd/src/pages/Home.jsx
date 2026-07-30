@@ -1,6 +1,6 @@
 //import ProductDetail from "@/components/ProductDetail";
 import ProductsCard from "@/components/ProductsCard";
-import React, { useState , useEffect, useContext} from "react";
+import { useState , useEffect, useContext} from "react";
 import Carrusel from "@/components/Carrusel";
 import productsApi from "../api/productsApi";
 import { SearchContext } from "../context/SearchContext";

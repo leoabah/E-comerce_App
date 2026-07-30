@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import { useEffect,useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import productsApi from "../api/productsApi";
 import { toast } from "react-toastify";
@@ -34,7 +34,7 @@ export default function EditProduct() {
         };
 
         getProduct();
-    },[]);
+    },[id]);
 
     const handleChange = (e) =>{
         const {name,value} =
@@ -56,7 +56,8 @@ export default function EditProduct() {
                 "producto actualizado"
             );
             navigate("/");
-        }catch(error){
+        } catch(error) {
+            console.error(error);
             toast.error(
                 "error al actualizar"
             );
