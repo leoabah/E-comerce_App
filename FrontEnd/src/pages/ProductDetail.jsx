@@ -1,12 +1,17 @@
 
-import { useParams } from "react-router-dom"
+import { useParams ,useNavigate } from "react-router-dom"
 import { useEffect,useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "@/context/CartContext";
+import { toast } from "react-hot-toast";
 import productsApi from "../api/productsApi";
 
 
 
 export default function ProductDetail(){
     const {id} = useParams();
+    const navigate = useNavigate();
+    const {addToCart} = useContext(CartContext);
 
     const [product,setProduct]=useState(null);
     const [mainImage, setMainImage]= useState("")
@@ -97,11 +102,27 @@ const images = Array.isArray(product.image)
 
                 </p>
 
-                <button className="btn-buy">
+                
+
+                <button className="btn-buy"
+                onClick={() => {
+
+                addToCart(product);
+
+                toast.success("Producto agregado");
+
+              }}
+                >
                     Comprar ahora
                 </button>
-
+                <button className="btn-back"
+                  onClick={() => navigate(-1)}
+               >
+                Volver
+                </button>
             </div>
+
+            
 
         </div>
     );

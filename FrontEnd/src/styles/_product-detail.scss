@@ -47,6 +47,8 @@
 
 .detail-info{
     max-width: 500px;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .detail-info h1{
@@ -78,7 +80,7 @@
 }
 
 .btn-buy{
-    background: #a68a56;
+    background: #3483FA;
     color:azure;
     border: none;
     padding:15px 30px;
@@ -88,7 +90,28 @@
     transition: .2s;
 
     &:hover{
-        background-color: #e5c38e;
+        background-color: #5a4bd8;
+        transform: translateY(-2px);
+    }
+}
+
+.btn-back{
+    
+    position:absolute;
+    bottom: -14rem;
+    left: 30rem;
+    background: #c7a668;
+    color:azure;
+    border: none;
+    padding:15px 30px;
+    border-radius: 10px;
+    cursor:pointer;
+    font-size: 1rem;
+    transition: .2s;
+    margin-top: 20px;
+
+    &:hover{
+        background-color: #c6ad7f;
         transform: translateY(-2px);
     }
 }
@@ -100,6 +123,16 @@
     .main-image{
         max-width: 100%;
         height: auto;
+    }
+    .detail-info{
+        max-width: 100%;
+        margin-top: 20px;
+        .btn-back{
+            position: static;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
     }
     .detail-info h1{
         font-size: 1.8rem;
