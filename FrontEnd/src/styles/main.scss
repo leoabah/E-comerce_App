@@ -237,6 +237,10 @@ button {
 }
 
 @media (max-width: 768px) {
+  .logo-img{
+    height: 50px;
+    width: 50px;
+  }
   .menu-btn{
     display: block;
     position: relative;
@@ -266,7 +270,10 @@ button {
     transform: translateY(0);
   }
   .mini-cart{
-    width: 15rem;
+
+    width: 12rem;
+    
+
   }
   .cart-item{
     border: 1px solid #ddd;
@@ -285,7 +292,11 @@ button {
   }
 }
 @media (min-width: 769px)and (max-width:1025px) {
-   .products-grid{
+  .logo-title{
+    font-size: 0.6rem;
+  } 
+
+  .products-grid{
      grid-template-columns: repeat(2,1fr);
 
      gap: 1.5rem;

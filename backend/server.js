@@ -20,6 +20,9 @@ const app = express();
     "https://e-comerce-8hbbdvt8b-leoabahs-projects.vercel.app" 
  ];
 
+app.get("/ping",(req,res)=>{
+    res.status(200).send("pong");
+});
 app.use(cors({
     origin: function(origin,callback){
         if(!origin || allowedOrigins.includes(origin)){
