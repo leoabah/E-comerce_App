@@ -23,6 +23,10 @@ const app = express();
 app.get("/ping",(req,res)=>{
     res.status(200).send("pong");
 });
+app.all("/", (req, res) => {
+    res.status(200).send("is running perfectly!");
+});
+
 app.use(cors({
     origin: function(origin,callback){
         if(!origin || allowedOrigins.includes(origin)){
