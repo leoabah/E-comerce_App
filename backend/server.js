@@ -20,6 +20,8 @@ const app = express();
     "https://e-comerce-8hbbdvt8b-leoabahs-projects.vercel.app" 
  ];
 
+// este segmento  permite contacto tu website con
+//con el servicio que despertara tu render.
 app.get("/ping",(req,res)=>{
     res.status(200).send("pong");
 });
@@ -27,6 +29,8 @@ app.all("/", (req, res) => {
     res.status(200).send("is running perfectly!");
 });
 
+
+// requerrimiento que necesitas para  connectar con interne(browser en general)
 app.use(cors({
     origin: function(origin,callback){
         if(!origin || allowedOrigins.includes(origin)){
