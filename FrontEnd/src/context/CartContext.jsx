@@ -1,18 +1,20 @@
-import { createContext, useEffect, useState } from "react";
-export const CartContext =  createContext();
-export function CartProvider({children}){
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { CartContext } from "./cartContext.js";
 
-    const [cart,setCart] = useState(() =>{
-        const savedCart = localStorage.getItem("cart");
-        return savedCart
-        ? JSON.parse(savedCart)
-        :[];
+export const CartProvider = ({children}) => {
+    const { user } = useContext(AuthContext);
+
+    const cartStorageKey = user ? `cart_${user._id || user.email}` : "cart_guest";
+
+    const [cart, setCart] = useState(() => {
+        const savedCart = localStorage.getItem(cartStorageKey);
+        return savedCart ? JSON.parse(savedCart) : [];
     });
 
-    useEffect(()=>{
-        localStorage.setItem("cart",JSON.stringify(cart)
-    );
-    }, [cart]);
+    useEffect(() => {
+        localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+    }, [cart, cartStorageKey]);
 
     const addToCart = (product)=>{
         const exists =cart.find(
@@ -74,6 +76,7 @@ export function CartProvider({children}){
 
     const clearCart = ( )=> {
        setCart([]);
+    localStorage.removeItem(cartStorageKey);//opcional: eliminar el carrito del localStorage al limpiar el carrito
     };
 
     const totalPrice = cart.reduce(
@@ -81,6 +84,7 @@ export function CartProvider({children}){
 
     const totalItems = cart.reduce(
         (acc, item) => acc + item.quantity,0);
+
     return(
         <CartContext.Provider
           value={{

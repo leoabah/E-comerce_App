@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaSearch, FaShoppingCart, FaUser , FaBars, FaTimes} from 'react-icons/fa'
+import {  FaShoppingCart, FaUser , FaBars, FaTimes} from 'react-icons/fa'
 import { useContext } from "react"
-import { CartContext } from  "@/context/CartContext"
+import { CartContext } from  "@/context/cartContext.js"
 import logoHeader from "@/assets/logo.png"
 import MiniCart from '@/components/MiniCart.jsx'
 import { AuthContext } from '../context/AuthContext'
@@ -15,7 +15,7 @@ export default function Header() {
   const {search,setSearch}=useContext(SearchContext);
 
 
-  const  { totalItems } = useContext(CartContext);
+  const  { totalItems, clearCart } = useContext(CartContext);
 
   const [menuOpen, setMenuOpen]= 
   useState(false);
@@ -27,8 +27,13 @@ export default function Header() {
   const firstName = user?.name?.split(" ")[0];
 
   const handleLogout = ()=> {
-    logout()
-      setMenuOpen(false);
+    logout();
+    setMenuOpen(false);
+    setOpenCart(false);
+
+    if (clearCart) {
+      clearCart();
+    }
   };
 
   return (

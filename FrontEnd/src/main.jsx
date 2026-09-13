@@ -13,24 +13,22 @@ import { SearchProvider } from "./context/SearchContext.jsx"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter 
-      basename= {
-        import.meta.env.BASE_URL
-        }>
-    <SearchProvider>
-
-     <CartProvider>
-      <AuthProvider>
-       < App />
-      </AuthProvider>
-       <Toaster
-         position="top-right"
-         toastOptions={{
-           duration: 2500,
-          }} 
-          />
-      </CartProvider>
-    </SearchProvider>
+    <BrowserRouter
+      basename={import.meta.env.BASE_URL}
+    >
+      <SearchProvider>
+        <AuthProvider>
+          <CartProvider>
+            <App />
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 2500,
+              }}
+            />
+          </CartProvider>
+        </AuthProvider>
+      </SearchProvider>
     </BrowserRouter>
   </StrictMode>,
 )

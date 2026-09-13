@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
+import { MercadoPagoConfig, Preference } from "mercadopago";
 import { connectDB} from "./config/db.js";
 import orderRoutes from "./routes/orderRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
@@ -20,6 +20,8 @@ const app = express();
     "https://e-comerce-8hbbdvt8b-leoabahs-projects.vercel.app" 
  ];
 
+
+
 app.get("/ping",(req,res)=>{
     res.status(200).send("pong");
 });
@@ -35,7 +37,43 @@ app.use(cors({
     }
 }));
 
+// SDK de Mercado Pago
+import { MercadoPagoConfig, Preference } from 'mercadopago';
+// Agrega credenciales
+const client = new MercadoPagoConfig({ accessToken: "APP_USR-4628819761549408-090913-df222a78b1952bc595ab32d71a60c599-1608625904" });
 app.use(express.json());
+
+//route de peticiones de mercadopago
+
+app.post("/create-preference", async (req, res) => {
+   const preference = new Preference(client);
+
+
+   preference.create({
+         body: {
+         items: [
+           {
+              title: '',
+              quantity: 1,
+               unit_price: 2000
+            }
+        ],
+     }
+    })
+
+    .then((data) => { 
+       {console.log(data);
+        // Enviar la respuesta al cliente con la información de la preferencia
+        res.status(200).json({
+           preference_Id: data.id,
+           preference_url: data.init_point,   
+       })
+       })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).json({ error: 'Error al crear la preferencia' });
+});
+
 
 
 connectDB();

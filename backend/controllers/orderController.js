@@ -12,7 +12,8 @@ export const createOrder = async (
         await Order.create({
             user:req.user.id,
             products:req.body.products,
-            total: req.body.total
+            total: req.body.total,
+            paymentMethod: req.body.paymentMethod || "mercadopago"
         });
         console.log("ORDER CREADA:", order);
 

@@ -31,7 +31,8 @@ status :{
 
 paymentMethod:{
     type:String,
-    default:"pendiente"
+    enum:["mercadopago", "transferencia", "pendiente"],
+    default:"mercadopago"
 }
 },
  {

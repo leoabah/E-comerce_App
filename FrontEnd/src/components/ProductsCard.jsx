@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { CartContext } from "@/context/CartContext";
+import { CartContext } from "@/context/cartContext.js";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 export default function ProductsCard({
