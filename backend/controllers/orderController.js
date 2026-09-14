@@ -88,11 +88,10 @@ export const createMercadoPagoPreference = async (req, res) => {
           total
         },
         back_urls: {
-          success: "http://localhost:5173/perfil",
-          failure: "http://localhost:5173/checkout",
-          pending: "http://localhost:5173/checkout"
-        },
-        auto_return: "approved"
+          success: "https://libreria-cosmica-frontend.onrender.com/perfil",
+          failure: "https://libreria-cosmica-frontend.onrender.com/checkout",
+          pending: "https://libreria-cosmica-frontend.onrender.com/checkout"
+        }
       }
     });
 
