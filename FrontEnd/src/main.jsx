@@ -9,7 +9,9 @@ import { CartProvider } from './context/CartContext.jsx'
 import { Toaster } from "react-hot-toast"
 import { AuthProvider } from "./context/AuthContext.jsx"
 import { SearchProvider } from "./context/SearchContext.jsx"
+import { initMercadoPago } from '@mercadopago/sdk-react';
 
+initMercadoPago(import.meta.env.VITE_MERCADO_PAGO_PUBLIC_KEY);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

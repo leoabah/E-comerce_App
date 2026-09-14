@@ -1,4 +1,5 @@
 
+import { Wallet } from "@mercadopago/sdk-react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
@@ -10,18 +11,47 @@ function Checkout() {
   const navigate = useNavigate();
   const { cart, totalPrice, clearCart } = useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState("mercadopago");
+  const [preferenceId, setPreferenceId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
+    if (cart.length === 0) {
+      toast.error("Tu carrito está vacío");
+      return;
+    }
+
+    if (paymentMethod === "mercadopago") {
+      setLoading(true);
+
+      try {
+        const response = await orderApi.post(
+          "/create-preference",
+          {
+            products: cart.map(item => ({
+              productId: item._id,
+              quantity: item.quantity,
+              price: item.price
+            })),
+            total: totalPrice
+          }
+        );
+
+        setPreferenceId(response.data.preferenceId);
+      } catch (error) {
+        console.error(error);
+        toast.error(error.response?.data?.message || "Error al crear la preferencia de pago");
+      } finally {
+        setLoading(false);
+      }
+
+      return;
+    }
+
     const token = localStorage.getItem("token");
 
     if (!token) {
       toast.error("Debes iniciar sesion para comprar");
       navigate("/login");
-      return;
-    }
-
-    if (cart.length === 0) {
-      toast.error("Tu carrito está vacío");
       return;
     }
 
@@ -102,12 +132,18 @@ function Checkout() {
                   <span>Transferencia</span>
                 </label>
               </div>
+
+              {paymentMethod === "mercadopago" && preferenceId && (
+                <div className="checkout-wallet">
+                  <Wallet initialization={{ preferenceId }} />
+                </div>
+              )}
             </div>
 
             <div className="checkout-summary">
               <h2>Total: ${totalPrice}</h2>
-              <button className="checkout-button" onClick={handleCheckout}>
-                Confirmar compra
+              <button className="checkout-button" onClick={handleCheckout} disabled={loading}>
+                {loading ? "Procesando..." : "Confirmar compra"}
               </button>
             </div>
           </>
