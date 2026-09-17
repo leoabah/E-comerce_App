@@ -36,7 +36,7 @@ app.use(cors({
   }
 }));
 
-console.log("MERCADOPAGO TOKEN EXISTE:" ,Boolean(Process.env.MERCADOPAGO_ACCESS_TOKEN));
+console.log("MERCADOPAGO TOKEN EXISTE:" ,Boolean(process.env.MERCADOPAGO_ACCESS_TOKEN));
 
 
 const client = new MercadoPagoConfig({
