@@ -3,8 +3,7 @@ import { MercadoPagoConfig, Preference } from "mercadopago";
 import Order from "../models/Order.js";
 
 const client = new MercadoPagoConfig({
-  accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN ||
-    "APP_USR-4628819761549408-090913-df222a78b1952bc595ab32d71a60c599-1608625904"
+  accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN 
 });
 
 export const createOrder = async (
