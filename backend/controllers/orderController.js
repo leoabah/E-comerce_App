@@ -99,6 +99,7 @@ export const createMercadoPagoPreference = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    console.error("ERROR DETALLADO DE MERCADOPAGO:", error.cause || error);
     return res.status(500).json({
       message: error.message || "Error al crear la preferencia"
     });
