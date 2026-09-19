@@ -19,6 +19,13 @@ function Checkout() {
       toast.error("Tu carrito está vacío");
       return;
     }
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      toast.error("Debes iniciar sesión para comprar");
+      navigate("/login");
+      return;
+    }
 
     if (paymentMethod === "mercadopago") {
       setLoading(true);
@@ -44,14 +51,6 @@ function Checkout() {
         setLoading(false);
       }
 
-      return;
-    }
-
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      toast.error("Debes iniciar sesion para comprar");
-      navigate("/login");
       return;
     }
 
