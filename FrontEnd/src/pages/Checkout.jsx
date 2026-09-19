@@ -36,6 +36,7 @@ function Checkout() {
           {
             products: cart.map(item => ({
               productId: item._id,
+              title: item.title,
               quantity: item.quantity,
               price: item.price
             })),
